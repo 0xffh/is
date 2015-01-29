@@ -1,23 +1,7 @@
 # User specific & automatically generated files #
 #################################################
-#/app/Config/database.php
-#/app/tmp
-/app/tmp/cache/1_month/*
-/app/tmp/cache/1_year/*
-/app/tmp/cache/default/*
-/app/tmp/cache/models/*
-/app/tmp/cache/persistent/*
-/app/tmp/cache/views/*
-/app/tmp/logs/error.log
-/app/tmp/sessions/*
-/app/tmp/tests/*
+/app/tmp/
 /lib/Cake/Console/Templates/skel/tmp/
-/plugins
-/vendors
-/build
-/dist
-/tags
-hook.php
 
 # OS generated files #
 ######################
