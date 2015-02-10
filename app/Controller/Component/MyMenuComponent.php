@@ -1,6 +1,6 @@
 <?php
 class MyMenuComponent extends Component {
-    
+
     function getMenu($key) {
         $this->Menu = ClassRegistry::init('Menu');
         
@@ -10,10 +10,15 @@ class MyMenuComponent extends Component {
                 'contain' => array(
                     'MenuItem' => array(
                         'fields' => array('MenuItem.name', 'MenuItem.url'),
-                        'order' => 'MenuItem.position ASC'
+                        'order' => 'MenuItem.position ASC',
+                        'conditions' => array('MenuItem.item_id' => null),
+                        'SubItem' => array(
+                            'fields' => array('SubItem.name', 'SubItem.url', 'SubItem.menu_id'),
+                            'order' => 'SubItem.position ASC'
+                        )
                     )
                 ),
-                'cache_options' => array('name' => 'menu_main_nav')
+                'cache_options' => array('name' => 'menu_'.$key.'_nav')
             )
         );
         

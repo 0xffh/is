@@ -5,7 +5,7 @@ class MenuItem extends AppModel {
     public $hasMany = array(
 		'SubItem' => array(
 			'className' => 'MenuItem',
-            'foreignKey' => 'item_id',
+            'foreignKey' => 'item_id'
 		)
 	);	
 }
