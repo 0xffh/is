@@ -23,6 +23,10 @@
             }
         })
         
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        
         $up_button.click(scrollUp);
 })(jQuery);
 
