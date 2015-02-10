@@ -9,5 +9,5 @@
     ?>
 </head>
 <body>
-    <?= $this->fetch('content') ?>
+    <div class="container"><?= $this->fetch('content') ?></div>
 </body>
