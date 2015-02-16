@@ -33,7 +33,7 @@
                 ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Адміністративна панель"><a href="admin/login"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></a></li>
+                <li data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Адміністративна панель"><a href="users/login"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></a></li>
             </ul>
         </div>
     </div>
