@@ -7,22 +7,21 @@ class AppController extends Controller {
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array('username' => 'login', 'password' => 'password'),
-					'passwordHasher' => 'Blowfish',
+					'passwordHasher' => 'blowfish',
 				),
 			),
             'loginAction' => array(
                 'controller' => 'users',
                 'action' => 'login',
             ),
-            'logoutRedirect' => '/',
+            'logoutRedirect' => '/users/login',
             'loginRedirect' => '/',
         ),
-        'MyMenu'
+        'MyMenu', 'Session'
     );
 
     function beforeFilter() {
         $this->set(array(
-            /*'user' => $this->Auth->user(),*/
 			'main_menu' => $this->MyMenu->getMenu('main'),
         ));
     }

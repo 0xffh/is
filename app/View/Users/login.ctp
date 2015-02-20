@@ -17,6 +17,7 @@
         echo $this->Form->submit('Логін', array('class' => 'btn btn-primary pull-left'));
         echo $this->Html->link("<strong>Забули пароль?</strong>", "/users/password", array("class" => "pull-right", "escape" => false));
         echo $this->Form->end();
+        echo '<p class="margin-top15">Немає аккаунту? '.$this->Html->link("Зареєструватися", "/users/register").'</p>';
+        echo $this->Session->flash();
     ?>
-    <p class='margin-top15'><?= "Немає аккаунту? ".$this->Html->link("Зареєструватися", "/users/register"); ?></p>
 </div>

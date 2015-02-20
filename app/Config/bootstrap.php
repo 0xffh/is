@@ -71,6 +71,9 @@ Cache::config('default', array('engine' => 'File'));
  */
 
 CakePlugin::load(array('Admin' => array('routes' => true)));
+CakePlugin::load(array('Guest' => array('routes' => true)));
+CakePlugin::load(array('Moder' => array('routes' => true)));
+CakePlugin::load(array('User' => array('routes' => true)));
  
 /**
  * To prefer app translation over plugin translation, you can set

@@ -3,6 +3,8 @@ class User extends AppModel {
     public $hasOne = array(
 		'UserInfo' => array(
 			'className' => 'UserInfo',
+			'foreignKey' => 'user_id',
+			'dependent' => true
 		),
 	);
 
@@ -13,9 +15,13 @@ class User extends AppModel {
                 'message' => 'Поле не може бути порожнім',
                 'required' => true
             ),
+			'en' => array(
+				'rule' => '/^[a-zA-Z0-9_-]+$/',
+				'message' => 'Значення повинно містити тільки цифри та букви латиницею'
+			),
             'unique' => array(
                 'rule' => 'isUniqueLogin',
-                'message' => 'Такий логін вже зареєстрований',
+                'message' => 'Такий користувач вже зареєстрований',
                 'required' => true
             )
         ),
@@ -33,7 +39,7 @@ class User extends AppModel {
     );
 
 	function beforeSave() {
-		$this->data['User']['hash_id'] = md5(date('YmdHis').microtime());
+		$this->data['User']['hash_id'] = md5(date('YmdHis').microtime().rand(1, 1000));
 		$this->data['User']['role'] = 'guest';
 		return true;		
 	}	
