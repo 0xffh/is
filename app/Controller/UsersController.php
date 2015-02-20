@@ -121,7 +121,7 @@ class UsersController extends AppController {
 
 	function password_reset($hash = false) {
 		$this->layout = 'login';
-		
+		/*
 		if($hash === false) throw new NotFoundException();
 		$hash = trim($hash);
 		if(empty($hash)) throw new NotFoundException();
@@ -133,8 +133,8 @@ class UsersController extends AppController {
 
 		if($this->request->is('post')) {
 			$password = trim($this->request->data['User']['password']);
-			if(empty($password) || mb_strlen($password) < 2) {
-				$this->Session->setFlash("Пароль некорректный", 'default', array('class' => 'alert alert-danger margin-top15'));
+			if(empty($password) || mb_strlen($password) < 8) {
+				$this->Session->setFlash("Пароль не коректний", 'default', array('class' => 'alert alert-danger margin-top15'));
 			} else {
 				$data = array('User' => array('password' => Security::hash($password, 'blowfish')));
 
@@ -148,13 +148,13 @@ class UsersController extends AppController {
 					$this->Auth->login($data);
 					$this->redirect('/');
 				} else {
-					$this->Session->setFlash("Ошибка. Пароль не сохранен", 'default', array('class' => 'alert alert-danger margin-top15'));
+					$this->Session->setFlash("Помилка. Пароль не збережений", 'default', array('class' => 'alert alert-danger margin-top15'));
 				}
 			}
 		}
-
+*/
 		$this->set(array(
-			"page_title" => "Восстановление пароля",
+			"page_title" => "Відновлення пароля",
 		));
 	}
 }

@@ -10,7 +10,7 @@ class User extends AppModel {
         'login' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
-                'message' => 'ПОле не може бути порожнім',
+                'message' => 'Поле не може бути порожнім',
                 'required' => true
             ),
             'unique' => array(
@@ -22,14 +22,19 @@ class User extends AppModel {
         'password' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
-                'message' => 'Поле не может быть пустым',
+                'message' => 'Поле не може бути порожнім',
                 'required' => true
-            )
+            ),
+			'between' => array(
+				'rule' => array('between', 8, 40),
+				'message' => 'Значення цього поля повинно бути не менше 8-и та не більше 40-а символів'
+			),
         )
     );
 
 	function beforeSave() {
-		$this->data['User']['hash'] = md5(date('YmdHis').microtime());
+		$this->data['User']['hash_id'] = md5(date('YmdHis').microtime());
+		$this->data['User']['role'] = 'guest';
 		return true;		
 	}	
 	
