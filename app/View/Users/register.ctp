@@ -5,7 +5,7 @@
     <?php
         echo $this->Form->create('User',
             array(
-                'class' => 'clearfix',
+                'class' => 'margin-bot15 clearfix',
                 'inputDefaults' => array(                            
                     'div' => 'form-group',
                     'class' => 'form-control'
@@ -20,10 +20,11 @@
                 'after' => '<span class="pointer input-group-addon"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></span></div>'
             ));
         echo $this->Form->submit('Зареєструватися', array('class' => 'btn btn-primary pull-left'));
-        echo $this->Html->link("<strong>Забули пароль?</strong>", "/users/password", array("class" => "pull-right", "escape" => false));
+        echo '<div class="pull-right margin-top10">';
+            echo 'Вже є аккаунт? '.$this->Html->link("<strong>Увійти</strong>", "/users/login", array("escape" => false));
+        echo '</div>';
         echo $this->Form->end();
     ?>
-    <p class='margin-top15'><?= "Вже є аккаунт? ".$this->Html->link("Увійти", "/users/login"); ?></p>
 </div>
 <?php
     echo $this->Html->script(array('users/password'));

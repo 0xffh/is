@@ -1,9 +1,9 @@
+body {padding-top:70px;}
 
-.margin-top15 {margin-top: 15px}
+.margin-top10 {margin-top: 10px;}
+.margin-bot15 {margin-bottom: 15px;}
 
 .error-message {margin: 3px; color: red}
-
-body {padding-top:70px;}
 
 .pointer {cursor: pointer;}
 
