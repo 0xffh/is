@@ -15,7 +15,7 @@
 			'/admin/news/add' => 'Додати Новину',                
 		),
 		'/pages' => array(
-			'/admin/pages' => 'Всі сторінки',
+			'/admin/pages/all' => 'Всі сторінки',
 			'/admin/pages/add' => 'Додати сторінку',                
 		)
 	);
@@ -37,7 +37,7 @@
 			</ul>
             <ul class="nav navbar-nav navbar-right">
 				<li data-toggle="tooltip"><a href="/">На сайт</a></li>
-                <li data-toggle="tooltip"><a href="/users/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                <li data-toggle="tooltip" data-placement="bottom" title="Вихід"><a href="/users/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
             </ul>
         </div>
     </div>

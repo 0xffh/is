@@ -14,5 +14,6 @@
 		<div class="row header"><?= $this->element('parts/nav') ?></div>
 		<div class="row content"><?= $this->fetch('content') ?></div>
 		<div id='up-button'><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
+		<?= $this->html->script('/admin/js/all_page'); ?>
 	</div>
 </body>

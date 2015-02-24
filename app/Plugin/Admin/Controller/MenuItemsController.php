@@ -9,29 +9,26 @@ class MenuItemsController extends AdminAppController {
         $menu = $this->Menu->findById($menu_id);
         if(empty($menu)) throw new NotFoundException();
         
-        $lang = $this->MyLanguage->getLanguageByKey($this->getLanguageParam());
-        
         if($this->request->is('post')) {
             $this->request->data['MenuItem']['menu_id'] = $menu_id;
-            $this->request->data['MenuItem']['language_id'] = $lang['Language']['id'];
             
             if($this->MenuItem->save($this->request->data, true)) {
-                $this->Session->setFlash('Пункт меню добавлен', 'flash', array('class' => 'alert-success'));
+                $this->Session->setFlash('Пункт меню доданий', 'flash', array('class' => 'alert-success'));
                 $this->clearCache("menu*", "default");
                 $this->redirect($this->here);
             } else {
-                $this->Session->setFlash('Ошибка. Пункт меню не добавлен', 'flash', array('class' => 'alert-danger'));
+                $this->Session->setFlash('Помилка. Пункт меню не доданий', 'flash', array('class' => 'alert-danger'));
             }
         }
         
         $other_items = $this->MenuItem->find('all',
             array(                
-                'conditions' => array('MenuItem.menu_id' => $menu_id, 'MenuItem.language_id' => $lang['Language']['id']),
+                'conditions' => array('MenuItem.menu_id' => $menu_id)
             )
         );
         
         $this->set(array(
-            'page_title' => 'Добавить пункт меню',
+            'page_title' => 'Додати пункт меню',
             'other_items' => $other_items,
             'current_nav' => '/menus'
         ));
@@ -41,45 +38,39 @@ class MenuItemsController extends AdminAppController {
         if($id === false) throw new NotFoundException();
         $id = (int) $id;
         
-        $lang = $this->MyLanguage->getLanguageByKey($this->getLanguageParam());
-        
         $item = $this->MenuItem->findById($id);        
         if(empty($item)) throw new NotFoundException();        
         
-        if($this->request->is('post')) {            
-            $this->request->data['MenuItem']['language_id'] = $lang['Language']['id'];
-            
+        if($this->request->is('post')) {                        
             $this->MenuItem->id = $id;
             
             if($this->MenuItem->save($this->request->data, true)) {
-                $this->Session->setFlash('Пункт обновлен', 'flash', array('class' => 'alert-success'));
+                $this->Session->setFlash('Пункт оновлений', 'flash', array('class' => 'alert-success'));
                 $this->clearCache("menu*", "default");
-                $this->redirect($this->here.'?lang='.$this->getLanguageParam());
+                $this->redirect($this->here);
             } else {
-                $this->Session->setFlash('Ошибка. Пункт меню не обневлен', 'flash', array('class' => 'alert-danger'));
+                $this->Session->setFlash('Помилка. Пункт меню не оновлений', 'flash', array('class' => 'alert-danger'));
             }
         }
         
         $this->set(array(
-            'page_title' => 'Редактирование пунтка меню',
+            'page_title' => 'Редагування пункту меню',
             'item' => $item,
             'current_nav' => '/menus'
         ));
     }
     
-    function items($menu_id) {
-        $lang = $this->MyLanguage->getLanguageByKey($this->getLanguageParam());
-        
+    function items($menu_id) {        
         $menu = $this->Menu->findById($menu_id);
         
         $items = $this->MenuItem->find('all',
             array(
-                'conditions' => array('MenuItem.menu_id' => $menu_id, 'MenuItem.language_id' => $lang['Language']['id']),                
+                'conditions' => array('MenuItem.menu_id' => $menu_id)
             )
         );
         
         $this->set(array(
-            'page_title' => 'Пункты меню',
+            'page_title' => 'Пункти меню',
             'items' => $items,
             'menu' => $menu,
             'current_nav' => '/menus'
@@ -88,7 +79,7 @@ class MenuItemsController extends AdminAppController {
     
     function delete($id) {
         if($this->MenuItem->delete($id)) {
-            $this->Session->setFlash('Пункт удален', 'flash', array('class' => 'alert-success'));
+            $this->Session->setFlash('Пункт видалений', 'flash', array('class' => 'alert-success'));
             $this->clearCache("menu*", "default");
             $this->redirect('/admin/menus/index');
         } else {
