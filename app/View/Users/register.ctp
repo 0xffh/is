@@ -1,4 +1,4 @@
-<div class='row col-md-8 col-md-offset-2'>
+<div class='col-md-8 col-md-offset-2'>
     <div class="page-header">
         <h1>Реєстрація</h1>
     </div>
