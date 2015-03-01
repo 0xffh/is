@@ -4,6 +4,11 @@
 		'/navs' => 'Меню',
 		'/news' => 'Новини',
 		'/pages' => 'Сторінки',
+		'/reviews' => 'Відгуки',
+		'/admin/sliders' => 'Слайдер',
+		'/admin/adverts' => 'Оголошення',
+		'/admin/users' => 'Користувачі',
+		'/admin/userinfo' => 'Профіль'
 	);
 	$subitems = array(
 		'/navs' => array(
@@ -11,13 +16,17 @@
 			'/admin/navs/add' => 'Додати меню',
 		),
 		'/news' => array(
-			'/admin/news' => 'Всі новини',
+			'/admin/news/all' => 'Всі новини',
 			'/admin/news/add' => 'Додати Новину',                
 		),
 		'/pages' => array(
 			'/admin/pages/all' => 'Всі сторінки',
 			'/admin/pages/add' => 'Додати сторінку',                
-		)
+		),
+		'/reviews' => array(
+			'/admin/reviews/all' => 'Всі відгуки',
+			'/admin/reviews/notaccepted' => 'Не прийняті',                
+		)	
 	);
 ?>
 <nav class="navbar navbar-default">
