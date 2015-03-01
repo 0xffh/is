@@ -22,8 +22,10 @@
 				<?= $this->element('parts/right-panel'); ?>
 			</div>
 		</div>
-		<div class="row footer" id="footer"><?= $this->element('parts/footer'); ?></div>
-		<div id='up-button'><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
-		<?= $this->html->script('all_page'); ?>
 	</div>
+	<div class="container-fluid footer">
+		<?= $this->element('parts/footer'); ?>
+	</div>
+	<div id='up-button'><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
+	<?= $this->html->script('all_page'); ?>
 </body>

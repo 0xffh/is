@@ -4,7 +4,7 @@
         $up_button = $('#up-button');
         
         function resize() {
-            if ($window.width() < 768) {
+            if ($window.width() < 992) {
                 return $header.removeClass('navbar-fixed-top');
             }
             
