@@ -1,4 +1,4 @@
-body {padding-top:70px;}
+body {padding-top:80px; background: url("/img/bg.png")}
 
 .margin-top10 {margin-top: 10px;}
 .margin-bot15 {margin-bottom: 15px;}
@@ -6,6 +6,9 @@ body {padding-top:70px;}
 .error-message {margin: 3px; color: red}
 
 .pointer {cursor: pointer;}
+
+#footer {background:#7893aa; margin-top: 20px; border-top: 3px solid #444; color: #000;}
+#footer a {color: #fff;}
 
 #up-button {position:fixed; bottom:15px; right:15px; padding:10px 15px; background:#222; color:#fff; font-size:24px; font-weight:800; text-align:center; cursor:pointer; line-height:15px; transition:bottom 0.2s ease, color 0.2s ease, background 0.2s ease; border-radius:5px; display: none;}
 #up-button span {position:relative; top:-3px}
