@@ -1,14 +1,14 @@
 <?php
 	$current_nav = isset($current_nav) ? $current_nav : '';
 	$items = array(
-		'/menus' => 'Меню',
+		'/navs' => 'Меню',
 		'/news' => 'Новини',
 		'/pages' => 'Сторінки',
 	);
 	$subitems = array(
-		'/menus' => array(
-			'/admin/menus' => 'Список меню',
-			'/admin/menus/add' => 'Додати меню',
+		'/navs' => array(
+			'/admin/navs' => 'Список меню',
+			'/admin/navs/add' => 'Додати меню',
 		),
 		'/news' => array(
 			'/admin/news' => 'Всі новини',

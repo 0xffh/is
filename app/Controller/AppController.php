@@ -1,7 +1,7 @@
 <?php
 App::uses('Controller', 'Controller');
 class AppController extends Controller {
-    
+
     public $components = array(
         'Auth' => array(
 			'authenticate' => array(
@@ -25,7 +25,7 @@ class AppController extends Controller {
 			'main_menu' => $this->MyMenu->getMenu('main'),
         ));
     }
-    
+
     function clearCache($name, $folder) {
 		App::uses('Folder', 'Utility');
 		App::uses('File', 'Utility');

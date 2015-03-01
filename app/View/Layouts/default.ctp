@@ -3,7 +3,7 @@
 	<meta content="text/html;charset=utf-8" http-equiv="content-type" />
 	<meta name="description" content="<?= isset($meta_d) ? $meta_d : ""; ?>" />
 	<meta name="keywords" content="<?= isset($meta_k) ? $meta_k : ""; ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<title><?= isset($page_title) ? $page_title : ""; ?></title>
 	<?php
 		echo $this->html->meta('icon');  
@@ -18,7 +18,7 @@
 			<div class="col-md-8 content">
 				<?= $this->fetch('content') ?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 right-panel">
 				<?= $this->element('parts/right-panel'); ?>
 			</div>
 		</div>

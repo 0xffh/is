@@ -5,4 +5,12 @@ class PagesController extends AdminAppController {
 			'page_title' => 'Панель адміністратора'
 		));
     }
+    
+    public function all() {
+        
+    }
+
+    public function add() {
+        
+    }
 }

@@ -181,7 +181,7 @@ class ClassRegistry {
 					} elseif ($plugin && class_exists($plugin . 'AppModel')) {
 						$appModel = $plugin . 'AppModel';
 					}
-
+					
 					$settings['name'] = $class;
 					$instance = new $appModel($settings);
 				}

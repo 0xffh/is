@@ -1,5 +1,7 @@
 body {padding-top:10px;}
 
+.margin-bot15 {margin-bottom: 15px;}
+
 .error-message {margin: 3px; color: red}
 
 .pointer {cursor: pointer;}
