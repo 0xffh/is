@@ -7,7 +7,7 @@ body {padding-top:80px; background: url("/img/bg.png")}
 
 .pointer {cursor: pointer;}
 
-.footer {background: #7893aa; box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.2); margin-top: 40px;}
+.footer {background: #8ca3bd; box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.2); margin-top: 40px;}
 .footer a {color: #fff;}
 .footer .copy {border-top: 1px solid #546f85; font-size: 12px; padding: 10px 0; color: #222;}
 

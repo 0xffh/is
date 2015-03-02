@@ -20,7 +20,7 @@ class AppController extends Controller {
         'MyMenu', 'Session'
     );
 
-    function beforeFilter() {
+    function beforeFilter() {        
         $this->set(array(
 			'main_menu' => $this->MyMenu->getMenu('main'),
         ));

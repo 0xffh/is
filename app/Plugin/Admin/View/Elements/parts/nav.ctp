@@ -2,31 +2,30 @@
 	$current_nav = isset($current_nav) ? $current_nav : '';
 	$items = array(
 		'/navs' => 'Меню',
-		'/news' => 'Новини',
-		'/pages' => 'Сторінки',
+		'/general' => 'Загальне',
 		'/reviews' => 'Відгуки',
 		'/admin/sliders' => 'Слайдер',
 		'/admin/adverts' => 'Оголошення',
 		'/admin/users' => 'Користувачі',
-		'/admin/userinfo' => 'Профіль'
+		'/self' => 'Особисте'
 	);
 	$subitems = array(
 		'/navs' => array(
 			'/admin/navs' => 'Список меню',
 			'/admin/navs/add' => 'Додати меню',
 		),
-		'/news' => array(
-			'/admin/news/all' => 'Всі новини',
-			'/admin/news/add' => 'Додати Новину',                
-		),
-		'/pages' => array(
-			'/admin/pages/all' => 'Всі сторінки',
-			'/admin/pages/add' => 'Додати сторінку',                
+		'/general' => array(
+			'/admin/news' => 'Новини',
+			'/admin/pages/all' => 'Сторінки',
 		),
 		'/reviews' => array(
 			'/admin/reviews/all' => 'Всі відгуки',
-			'/admin/reviews/notaccepted' => 'Не прийняті',                
-		)	
+			'/admin/reviews/notaccepted' => 'Не прийняті',
+		),
+		'/self' => array(
+			'/admin/userinfo' => 'Профіль',
+			'/admin/files' => 'Файли',
+		),
 	);
 ?>
 <nav class="navbar navbar-default">
