@@ -5,7 +5,7 @@
     <?php
         echo $this->Form->create('User',
             array(
-                'class' => 'margin-bot15 clearfix',
+                'class' => 'form margin-bot15 clearfix',
                 'inputDefaults' => array(                            
                     'div' => 'form-group',
                     'class' => 'form-control'
@@ -19,6 +19,7 @@
             echo 'Немає аккаунту? '.$this->Html->link("<strong>Зареєструватися</strong>", "/users/register", array("escape" => false));
         echo '</div>';
         echo $this->Form->end();
+        
         echo $this->Session->flash();
     ?>
 </div>

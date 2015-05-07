@@ -1,15 +1,9 @@
 <?php
+App::uses('AppController', 'Controller');
 class PagesController extends AppController {
+	public $uses = array();
 
-	function beforeFilter() {
-		parent::beforeFilter();
-		
-		$this->Auth->allow(array('index'));
+	public function homepage() {
+
 	}
-	
-    public function index() {
-		$this->set(array(
-			'page_title' => 'Кафедра інформаційних систем'
-		));
-    }
 }

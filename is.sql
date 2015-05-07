@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 21 2015 г., 01:50
+-- Время создания: Май 07 2015 г., 23:13
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -56,7 +56,14 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `menu_items`
+--
+
+INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`) VALUES
+(1, 1, NULL, 'Пункт1', '#', 1);
 
 -- --------------------------------------------------------
 
@@ -79,10 +86,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `hash_id`, `login`, `password`, `role`, `created`) VALUES
-(1, '2dff61354ff9c350000f96125923fada', 'admin', '$2a$10$jegULAunOvGmkz3ePNg1EeWYLRI5nyRjHd5FCGilSsgcOCgdj4fv.', 'admin', '2015-02-21 01:12:17'),
-(2, 'd3710069dc6c7821c979fe03d7ff4052', 'user', '$2a$10$wYGGboD.z9oak/daDcEhaOdcAE/7pE8lcqlUsz54LG7ezgIu87K1a', 'user', '2015-02-21 01:17:51'),
-(3, '7b7ee135af82cf07008b208d296d27aa', 'moder', '$2a$10$2kr1dwvUFYFZg9FoB0NFkehsp9fMX86z5dEFDZH670Lu2muWl01i.', 'moder', '2015-02-21 01:18:05'),
-(4, '22273e3265e384d86fa7fd0c9c9309d2', 'guest', '$2a$10$mkhhMGG011gVi/ll54UakeuxJ4J7iioDf1xZoIgqMnBhDrwVe0RTK', 'guest', '2015-02-21 01:18:16');
+(4, '4f1335efac6be7399f1ef8748a4663ec', 'admin', '$2a$10$kyCFDQ7U9FEL4H5B83if7.yChRupKkfnNreSClxy9suWowpzT9Uxa', 'admin', '2015-05-07 22:32:01');
 
 -- --------------------------------------------------------
 
@@ -100,33 +104,14 @@ CREATE TABLE IF NOT EXISTS `users_information` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `users_information`
 --
 
 INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `contact`, `content`, `modified`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, '2015-02-21 01:12:17'),
-(2, 2, NULL, NULL, NULL, NULL, '2015-02-21 01:17:51'),
-(3, 3, NULL, NULL, NULL, NULL, '2015-02-21 01:18:05'),
-(4, 4, NULL, NULL, NULL, NULL, '2015-02-21 01:18:16');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `users_resend_password`
---
-
-CREATE TABLE IF NOT EXISTS `users_resend_password` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
-  `hash` varchar(255) NOT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `hash_id` (`hash`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+(3, 4, NULL, NULL, NULL, NULL, '2015-05-07 22:32:01');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -144,12 +129,6 @@ ALTER TABLE `menu_items`
 --
 ALTER TABLE `users_information`
   ADD CONSTRAINT `users_information_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `users_resend_password`
---
-ALTER TABLE `users_resend_password`
-  ADD CONSTRAINT `users_resend_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

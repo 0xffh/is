@@ -5,7 +5,7 @@
     <?php
         echo $this->Form->create('User',
             array(
-                'class' => 'margin-bot15 clearfix',
+                'class' => 'form',
                 'inputDefaults' => array(                            
                     'div' => 'form-group',
                     'class' => 'form-control'
@@ -16,6 +16,7 @@
         echo $this->Form->input('User.password',
             array(
                 'label' => 'Пароль',
+                'class' => 'form-control pointer',
                 'between' => '<div class="input-group">',
                 'after' => '<span class="pointer input-group-addon"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></span></div>'
             ));

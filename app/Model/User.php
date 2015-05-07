@@ -37,12 +37,6 @@ class User extends AppModel {
 			),
         )
     );
-
-	function beforeSave() {
-		$this->data['User']['hash_id'] = md5(date('YmdHis').microtime().rand(1, 1000));
-		$this->data['User']['role'] = 'guest';
-		return true;		
-	}	
 	
     function isUniqueLogin() {
         $check = $this->findByLogin($this->data['User']['login'], array('id'));

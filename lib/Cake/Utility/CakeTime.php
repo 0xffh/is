@@ -575,12 +575,12 @@ class CakeTime {
  *
  * @param int|string|DateTime $dateString UNIX timestamp, strtotime() valid string or DateTime object
  * @param bool $range if true returns a range in Y-m-d format
- * @return mixed 1, 2, 3, or 4 quarter of year or array if $range true
+ * @return int|array 1, 2, 3, or 4 quarter of year or array if $range true
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/time.html#TimeHelper::toQuarter
  */
 	public static function toQuarter($dateString, $range = false) {
 		$time = self::fromString($dateString);
-		$date = ceil(date('m', $time) / 3);
+		$date = (int)ceil(date('m', $time) / 3);
 		if ($range === false) {
 			return $date;
 		}
@@ -1018,12 +1018,12 @@ class CakeTime {
  *
  * Create localized & formatted time:
  *
- * {{{
+ * ```
  *   CakeTime::format('2012-02-15', '%m-%d-%Y'); // returns 02-15-2012
  *   CakeTime::format('2012-02-15 23:01:01', '%c'); // returns preferred date and time based on configured locale
  *   CakeTime::format('0000-00-00', '%d-%m-%Y', 'N/A'); // return N/A becuase an invalid date was passed
  *   CakeTime::format('2012-02-15 23:01:01', '%c', 'N/A', 'America/New_York'); // converts passed date to timezone
- * }}}
+ * ```
  *
  * @param int|string|DateTime $date UNIX timestamp, strtotime() valid string or DateTime object (or a date format string)
  * @param int|string|DateTime $format date format string (or UNIX timestamp, strtotime() valid string or DateTime object)
@@ -1138,7 +1138,7 @@ class CakeTime {
 			if (function_exists('mb_check_encoding')) {
 				$valid = mb_check_encoding($format, $encoding);
 			} else {
-				$valid = !Multibyte::checkMultibyte($format);
+				$valid = Multibyte::checkMultibyte($format);
 			}
 			if (!$valid) {
 				$format = utf8_encode($format);

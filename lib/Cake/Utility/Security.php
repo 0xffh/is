@@ -16,7 +16,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('String', 'Utility');
+App::uses('CakeText', 'Utility');
 
 /**
  * Security Library contains utility methods related to security
@@ -63,7 +63,7 @@ class Security {
  * @return string Hash
  */
 	public static function generateAuthKey() {
-		return Security::hash(String::uuid());
+		return Security::hash(CakeText::uuid());
 	}
 
 /**
@@ -91,9 +91,9 @@ class Security {
  *
  * Creating a blowfish/bcrypt hash:
  *
- * {{{
+ * ```
  * 	$hash = Security::hash($password, 'blowfish');
- * }}}
+ * ```
  *
  * @param string $string String to hash
  * @param string $type Method to use (sha1/sha256/md5/blowfish)

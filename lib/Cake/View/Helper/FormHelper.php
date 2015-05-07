@@ -408,7 +408,7 @@ class FormHelper extends AppHelper {
 				'action' => $options['action'],
 			);
 			$options['action'] = array_merge($actionDefaults, (array)$options['url']);
-			if (empty($options['action'][0]) && !empty($id)) {
+			if (!isset($options['action'][0]) && !empty($id)) {
 				$options['action'][0] = $id;
 			}
 		} elseif (is_string($options['url'])) {
@@ -498,7 +498,7 @@ class FormHelper extends AppHelper {
  *
  * If $options is set a form submit button will be created. Options can be either a string or an array.
  *
- * {{{
+ * ```
  * array usage:
  *
  * array('label' => 'save'); value="save"
@@ -506,7 +506,7 @@ class FormHelper extends AppHelper {
  * array('name' => 'Whatever'); value="Submit" name="Whatever"
  * array('label' => 'save', 'name' => 'Whatever', 'div' => 'good') <div class="good"> value="save" name="Whatever"
  * array('label' => 'save', 'name' => 'Whatever', 'div' => array('class' => 'good')); <div class="good"> value="save" name="Whatever"
- * }}}
+ * ```
  *
  * If $secureAttributes is set, these html attributes will be merged into the hidden input tags generated for the
  * Security Component. This is especially useful to set HTML5 attributes like 'form'
@@ -786,33 +786,33 @@ class FormHelper extends AppHelper {
  *
  * The text and for attribute are generated off of the fieldname
  *
- * {{{
+ * ```
  * echo $this->Form->label('Post.published');
  * <label for="PostPublished">Published</label>
- * }}}
+ * ```
  *
  * Custom text:
  *
- * {{{
+ * ```
  * echo $this->Form->label('Post.published', 'Publish');
  * <label for="PostPublished">Publish</label>
- * }}}
+ * ```
  *
  * Custom class name:
  *
- * {{{
+ * ```
  * echo $this->Form->label('Post.published', 'Publish', 'required');
  * <label for="PostPublished" class="required">Publish</label>
- * }}}
+ * ```
  *
  * Custom attributes:
  *
- * {{{
+ * ```
  * echo $this->Form->label('Post.published', 'Publish', array(
  *		'for' => 'post-publish'
  * ));
  * <label for="post-publish">Publish</label>
- * }}}
+ * ```
  *
  * @param string $fieldName This should be "Modelname.fieldname"
  * @param string $text Text that will appear in the label field. If
@@ -859,11 +859,11 @@ class FormHelper extends AppHelper {
  * will be used.
  *
  * You can customize individual inputs through `$fields`.
- * {{{
+ * ```
  *	$this->Form->inputs(array(
  *		'name' => array('label' => 'custom label')
  *	));
- * }}}
+ * ```
  *
  * In addition to controller fields output, `$fields` can be used to control legend
  * and fieldset rendering.
@@ -1287,12 +1287,13 @@ class FormHelper extends AppHelper {
 			isset($fieldDef['length']) &&
 			is_scalar($fieldDef['length']) &&
 			$fieldDef['length'] < 1000000 &&
+			$fieldDef['type'] !== 'decimal' &&
 			$options['type'] !== 'select'
 		);
 		if ($autoLength &&
 			in_array($options['type'], array('text', 'textarea', 'email', 'tel', 'url', 'search'))
 		) {
-			$options['maxlength'] = $fieldDef['length'];
+			$options['maxlength'] = (int)$fieldDef['length'];
 		}
 		return $options;
 	}
@@ -1491,7 +1492,9 @@ class FormHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#options-for-select-checkbox-and-radio-inputs
  */
 	public function radio($fieldName, $options = array(), $attributes = array()) {
+		$attributes['options'] = $options;
 		$attributes = $this->_initInputField($fieldName, $attributes);
+		unset($attributes['options']);
 
 		$showEmpty = $this->_extractOption('empty', $attributes);
 		if ($showEmpty) {
@@ -1986,13 +1989,13 @@ class FormHelper extends AppHelper {
  *
  * A simple array will create normal options:
  *
- * {{{
+ * ```
  * $options = array(1 => 'one', 2 => 'two);
  * $this->Form->select('Model.field', $options));
- * }}}
+ * ```
  *
  * While a nested options array will create optgroups with options inside them.
- * {{{
+ * ```
  * $options = array(
  *  1 => 'bill',
  *  'fred' => array(
@@ -2001,7 +2004,7 @@ class FormHelper extends AppHelper {
  *  )
  * );
  * $this->Form->select('Model.field', $options);
- * }}}
+ * ```
  *
  * In the above `2 => 'fred'` will not generate an option element. You should enable the `showParents`
  * attribute to show the fred option.
@@ -2009,12 +2012,12 @@ class FormHelper extends AppHelper {
  * If you have multiple options that need to have the same value attribute, you can
  * use an array of arrays to express this:
  *
- * {{{
+ * ```
  * $options = array(
  *  array('name' => 'United states', 'value' => 'USA'),
  *  array('name' => 'USA', 'value' => 'USA'),
  * );
- * }}}
+ * ```
  *
  * @param string $fieldName Name attribute of the SELECT
  * @param array $options Array of the OPTION elements (as 'value'=>'Text' pairs) to be used in the
@@ -2210,6 +2213,11 @@ class FormHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::year
  */
 	public function year($fieldName, $minYear = null, $maxYear = null, $attributes = array()) {
+		if (is_array($minYear)) {
+			$attributes = $minYear;
+			$minYear = null;
+		}
+
 		$attributes += array('empty' => true, 'value' => null);
 		if ((empty($attributes['value']) || $attributes['value'] === true) && $value = $this->value($fieldName)) {
 			if (is_array($value)) {
@@ -2307,6 +2315,11 @@ class FormHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::hour
  */
 	public function hour($fieldName, $format24Hours = false, $attributes = array()) {
+		if (is_array($format24Hours)) {
+			$attributes = $format24Hours;
+			$format24Hours = false;
+		}
+
 		$attributes += array('empty' => true, 'value' => null);
 		$attributes = $this->_dateTimeSelected('hour', $fieldName, $attributes);
 
@@ -2955,7 +2968,18 @@ class FormHelper extends AppHelper {
 			$result = $this->addClass($result, 'form-error');
 		}
 
-		if (!empty($result['disabled'])) {
+		$isDisabled = false;
+		if (isset($result['disabled'])) {
+			$isDisabled = (
+				$result['disabled'] === true ||
+				$result['disabled'] === 'disabled' ||
+				(is_array($result['disabled']) &&
+					!empty($result['options']) &&
+					array_diff($result['options'], $result['disabled']) === array()
+				)
+			);
+		}
+		if ($isDisabled) {
 			return $result;
 		}
 

@@ -1,9 +1,13 @@
 <?php
-class AdminAppController extends AppController {
+class AdminAppController extends AppController {	
     function beforeFilter() {
 		parent::beforeFilter();
 		
         $user = $this->Auth->user();
-		if($user['User']['role'] != 'admin') throw New NotFoundException();	
+		if($user['User']['role'] != 'admin') throw New NotFoundException();
+
+		$this->set(array(
+            'user' => $this->Auth->user()
+		));
     }
 }

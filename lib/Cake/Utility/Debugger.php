@@ -19,7 +19,7 @@
  */
 
 App::uses('CakeLog', 'Log');
-App::uses('String', 'Utility');
+App::uses('CakeText', 'Utility');
 
 /**
  * Provide custom logging and error handling.
@@ -337,7 +337,7 @@ class Debugger {
 				$trace['path'] = self::trimPath($trace['file']);
 				$trace['reference'] = $reference;
 				unset($trace['object'], $trace['args']);
-				$back[] = String::insert($tpl, $trace, array('before' => '{:', 'after' => '}'));
+				$back[] = CakeText::insert($tpl, $trace, array('before' => '{:', 'after' => '}'));
 			}
 		}
 
@@ -637,7 +637,7 @@ class Debugger {
  *
  * `Debugger::addFormat('custom', $data);`
  *
- * Where $data is an array of strings that use String::insert() variable
+ * Where $data is an array of strings that use CakeText::insert() variable
  * replacement. The template vars should be in a `{:id}` style.
  * An error formatter can have the following keys:
  *
@@ -775,7 +775,7 @@ class Debugger {
 
 		if (isset($tpl['links'])) {
 			foreach ($tpl['links'] as $key => $val) {
-				$links[$key] = String::insert($val, $data, $insertOpts);
+				$links[$key] = CakeText::insert($val, $data, $insertOpts);
 			}
 		}
 
@@ -791,14 +791,14 @@ class Debugger {
 			if (is_array($value)) {
 				$value = implode("\n", $value);
 			}
-			$info .= String::insert($tpl[$key], array($key => $value) + $data, $insertOpts);
+			$info .= CakeText::insert($tpl[$key], array($key => $value) + $data, $insertOpts);
 		}
 		$links = implode(' ', $links);
 
 		if (isset($tpl['callback']) && is_callable($tpl['callback'])) {
 			return call_user_func($tpl['callback'], $data, compact('links', 'info'));
 		}
-		echo String::insert($tpl['error'], compact('links', 'info') + $data, $insertOpts);
+		echo CakeText::insert($tpl['error'], compact('links', 'info') + $data, $insertOpts);
 	}
 
 /**
@@ -842,11 +842,11 @@ class Debugger {
  * @return void
  */
 	public static function checkSecurityKeys() {
-		if (Configure::read('Security.salt') === 'DYhG93b0qyJfIGksaFqfasLhjgqfKGqfashwvniR2G0FgaC9mi') {
+		if (Configure::read('Security.salt') === 'DYhG93b0qGndjksaGJKbnsajfbakjGKas4213GSAdfsa2G0FgaC9mi') {
 			trigger_error(__d('cake_dev', 'Please change the value of %s in %s to a salt value specific to your application.', '\'Security.salt\'', 'APP/Config/core.php'), E_USER_NOTICE);
 		}
 
-		if (Configure::read('Security.cipherSeed') === '76855345341231242354496749683645') {
+		if (Configure::read('Security.cipherSeed') === '76859304235435234654352353249683645') {
 			trigger_error(__d('cake_dev', 'Please change the value of %s in %s to a numeric (digits only) seed value specific to your application.', '\'Security.cipherSeed\'', 'APP/Config/core.php'), E_USER_NOTICE);
 		}
 	}

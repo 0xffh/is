@@ -764,6 +764,31 @@ class FormHelperTest extends CakeTestCase {
 	}
 
 /**
+ * Tests correct generation of decimal fields as text inputs
+ *
+ * @return void
+ */
+	public function testTextFieldGenerationForDecimalAsText() {
+		$this->Form->create('ValidateUser');
+		$result = $this->Form->input('cost_decimal', array(
+			'type' => 'text'
+		));
+		$expected = array(
+			'div' => array('class' => 'input text'),
+			'label' => array('for' => 'ValidateUserCostDecimal'),
+			'Cost Decimal',
+			'/label',
+			array('input' => array(
+				'type' => 'text',
+				'name' => 'data[ValidateUser][cost_decimal]',
+				'id' => 'ValidateUserCostDecimal',
+			)),
+			'/div'
+		);
+		$this->assertTags($result, $expected);
+	}
+
+/**
  * Tests correct generation of number fields for integer fields
  *
  * @return void
@@ -1338,6 +1363,18 @@ class FormHelperTest extends CakeTestCase {
 		$this->Form->radio('Test.test', $options);
 		$expected = array('Test.test');
 		$this->assertEquals($expected, $this->Form->fields);
+
+		$this->Form->radio('Test.all', $options, array(
+			'disabled' => array('option1', 'option2')
+		));
+		$expected = array('Test.test', 'Test.all' => '');
+		$this->assertEquals($expected, $this->Form->fields);
+
+		$this->Form->radio('Test.some', $options, array(
+			'disabled' => array('option1')
+		));
+		$expected = array('Test.test', 'Test.all' => '', 'Test.some');
+		$this->assertEquals($expected, $this->Form->fields);
 	}
 
 /**
@@ -1372,9 +1409,11 @@ class FormHelperTest extends CakeTestCase {
 
 		$this->Form->checkbox('Model.checkbox', array('disabled' => true));
 		$this->Form->text('Model.text', array('disabled' => true));
-		$this->Form->password('Model.text', array('disabled' => true));
+		$this->Form->text('Model.text2', array('disabled' => 'disabled'));
+		$this->Form->password('Model.password', array('disabled' => true));
 		$this->Form->textarea('Model.textarea', array('disabled' => true));
 		$this->Form->select('Model.select', array(1, 2), array('disabled' => true));
+		$this->Form->select('Model.select', array(1, 2), array('disabled' => array(1, 2)));
 		$this->Form->radio('Model.radio', array(1, 2), array('disabled' => array(1, 2)));
 		$this->Form->year('Model.year', null, null, array('disabled' => true));
 		$this->Form->month('Model.month', array('disabled' => true));
@@ -7392,6 +7431,53 @@ class FormHelperTest extends CakeTestCase {
 	}
 
 /**
+ * testInputDate method
+ *
+ * Test various inputs with type date and different option attributes.
+ *
+ * @return void
+ */
+	public function testInputDateOptions() {
+		$this->Form->create('User');
+
+		$result = $this->Form->input('date',
+			array(
+				'label' => false,
+				'type' => 'day',
+				'class' => 'form-control'
+			)
+		);
+		$this->assertContains('class="form-control"', $result);
+
+		$result = $this->Form->input('date',
+			array(
+				'label' => false,
+				'type' => 'month',
+				'class' => 'form-control'
+			)
+		);
+		$this->assertContains('class="form-control"', $result);
+
+		$result = $this->Form->input('date',
+			array(
+				'label' => false,
+				'type' => 'year',
+				'class' => 'form-control'
+			)
+		);
+		$this->assertContains('class="form-control"', $result);
+
+		$result = $this->Form->input('date',
+			array(
+				'label' => false,
+				'type' => 'hour',
+				'class' => 'form-control'
+			)
+		);
+		$this->assertContains('class="form-control"', $result);
+	}
+
+/**
  * testInputDateMaxYear method
  *
  * Let's say we want to only allow users born from 2006 to 2008 to register
@@ -8603,6 +8689,7 @@ class FormHelperTest extends CakeTestCase {
 			'escape' => false,
 			'url' => array(
 				'action' => 'edit',
+				'0',
 				'myparam'
 			)
 		));
@@ -8610,7 +8697,7 @@ class FormHelperTest extends CakeTestCase {
 			'form' => array(
 				'id' => 'ContactAddForm',
 				'method' => 'post',
-				'action' => '/contacts/edit/myparam',
+				'action' => '/contacts/edit/0/myparam',
 				'accept-charset' => $encoding
 			),
 			'div' => array('style' => 'display:none;'),
@@ -8628,8 +8715,8 @@ class FormHelperTest extends CakeTestCase {
 	public function testCreateNoErrorsWithMockModel() {
 		$encoding = strtolower(Configure::read('App.encoding'));
 		$ContactMock = $this->getMockBuilder('Contact')
-				->disableOriginalConstructor()
-				->getMock();
+			->disableOriginalConstructor()
+			->getMock();
 		ClassRegistry::removeObject('Contact');
 		ClassRegistry::addObject('Contact', $ContactMock);
 		$result = $this->Form->create('Contact', array('type' => 'GET'));

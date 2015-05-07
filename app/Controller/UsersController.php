@@ -1,4 +1,6 @@
 <?php
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 class UsersController extends AppController {
 	
 	function beforeFilter() {
@@ -25,7 +27,8 @@ class UsersController extends AppController {
 					
 					switch($data['User']['role']) {
 						case 'guest' :
-							$this->redirect('/guest');
+							$this->Session->setFlash('Помилка. Недостатньо прав. Зверніться до адміністратора', 'flash', array('class' => 'alert-warning'));
+							$this->redirect('/users/logout');
 						break;
 						case 'user' :
 							$this->redirect('/user');
@@ -55,12 +58,19 @@ class UsersController extends AppController {
 		
         if($this->request->is('post')) {
             if($this->User->saveAll($this->request->data, array('validate' => 'only'))) {
-                $this->request->data['User']['password'] = Security::hash($this->request->data['User']['password'], 'blowfish');
-                $this->request->data['UserInfo']['user_id'] = $this->User->id;
+                $this->request->data['User']['hash_id'] = md5(date('YmdHis').rand(1, 1000).Configure::read('Security.salt'));
+				$this->request->data['User']['password'] = Security::hash($this->request->data['User']['password'], 'blowfish');
+                $this->request->data['User']['role'] = 'guest';
+				$this->request->data['UserInfo']['user_id'] = $this->User->id;
 				
 				if($this->User->saveAssociated($this->request->data, array('validate' => false))) {
-                    $this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
-                    $this->redirect('/users/login');
+					$last = $this->User->read(null, $this->User->id);
+					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$last['User']['hash_id'], true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$last['User']['hash_id'], true, 0755)) {
+						$this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
+						$this->redirect('/users/login');
+					} else {
+						$this->Session->setFlash('Помилка. Папка користувача не створена', 'flash', array('class' => 'alert-danger'));
+					}
                 } else {
                     $this->Session->setFlash('Помилка. Користувач не зареєстрований', 'flash', array('class' => 'alert-danger'));
                 }
