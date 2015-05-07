@@ -6,12 +6,13 @@
 				$items = array(
 					"/admin" => "<span class='glyphicon glyphicon-home'></span>",
 					"/menus" => "Меню",
+					"/admin/users" => "Користувачі",
 				);
 				$subitems = array(
 					"/menus" => array(
 						"/admin/menus" => "Список меню",
 						"/admin/menus/add" => "Додати меню",
-					)				
+					)	
 				);
 		
 				echo $this->element('parts/nav_output', array('items' => $items, 'subitems' => $subitems, 'current_nav' => $current_nav));

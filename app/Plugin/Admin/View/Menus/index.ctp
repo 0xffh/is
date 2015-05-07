@@ -11,7 +11,7 @@
         <h3>Додані меню</h3>
         <?php
             if(empty($menus)) {
-                echo "<p class='text-muted'>Поки нічого немає</p>";
+                echo $this->element('parts/nothing');
             } else {
                 echo "<ul>";
                 foreach($menus as $menu) {

@@ -5,7 +5,7 @@
             echo "<p>Меню: <strong>".$menu['Menu']['name']."</strong></p>";
 
             if(empty($items)) {
-                echo "<p class='text-muted'>Поки нічого немає</p>";
+                echo $this->element('parts/nothing');
             } else {
                 echo "<ul>";
                 foreach($items as $item) {

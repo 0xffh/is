@@ -24,18 +24,18 @@ class MenuItem extends AdminAppModel {
         'name' => array(
             'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Это поле не может быть пустим',
+				'message' => 'Поле не може бути порожнім',
 				'required' => true,
 			),              
 			'between' => array(
 				'rule' => array('between', 1, 100),
-				'message' => 'Значение этого поля должно быть не меньше 1-о и не больше 100-а символов'
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 100-а симвлів'
 			) 
         ),
         'url' => array(
             'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Это поле не может быть пустим',
+				'message' => 'Це поле не може бути порожнім',
 				'required' => true,
 			)			
         )
