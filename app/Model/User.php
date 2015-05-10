@@ -43,15 +43,4 @@ class User extends AppModel {
         return empty($check);
     }
 
-    function bindResendPassword() {
-        $this->bindModel(
-            array('belongsTo' => array(
-                    'ResendPassword' => array(
-                        'className' => 'UserResendPassword',
-                        'foreignKey' => 'id'
-                    )
-                )
-            )
-        );
-    }
 }

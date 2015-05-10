@@ -24,7 +24,7 @@ echo "
     <li class='pull-right dropdown'>
         <a href='#' class='dropdown-toggle' data-toggle='dropdown'><span class='glyphicon glyphicon-user'></span></a>
         <ul class='dropdown-menu'>
-			<li role='presentation' class='dropdown-header'>".$user['User']['login']."</li>
+			<li role='presentation' class='dropdown-header'>".$a_user['User']['login']."</li>
 			<li role='presentation' class='divider'></li>
 			<li>".$this->Html->link('На сайт &#8594;', '/', array('target' => '_blank', 'escape' => false))."</li>
 			<li role='presentation' class='divider'></li>

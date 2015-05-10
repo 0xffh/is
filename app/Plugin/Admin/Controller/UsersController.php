@@ -1,5 +1,9 @@
 <?php
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 class UsersController extends AdminAppController {
+	private $roles = array('admin' => 'Адміністратор', 'moder' => 'Модератор', 'user' => 'Користувач');
+	
     public function index() {
         
 		$this->paginate = array(
@@ -16,7 +20,34 @@ class UsersController extends AdminAppController {
 		));
     }
     
-	public function password($id = null) {
+	public function add() {
+		$this->set(array(
+            'page_title' => 'Додати користувача',
+			'roles' => $this->roles,
+            'current_nav' => '/admin/users'
+		));
+	}
+    
+    public function edit($id = null) {
+        if($id === null) throw new NotFoundException();
+		
+        $user = $this->User->find('first', array(
+			'contain' => 'UserInfo',
+			'conditions' => array(
+				'User.id' => $id
+			)
+		));
+        if(empty($user)) throw new NotFoundException();
+		
+        $this->set(array(
+            'page_title' => 'Редагування користувача',            
+            'user' => $user,
+			'roles' => $this->roles,
+			'current_nav' => '/admin/users',
+        ));
+    }
+    
+	function password($id = null) {
         if($id === null) throw new NotFoundException();
 
         $user = $this->User->findById($id);
@@ -41,14 +72,10 @@ class UsersController extends AdminAppController {
         $this->set(array(
             'page_title' => 'Редагування паролю користувача',            
             'user' => $user,
-			'current_nav' => '/users',
+			'current_nav' => '/admin/users',
         ));
 	}
-    
-    public function edit() {
-    
-    }
-    
+	
     public function delete() {
     
     }

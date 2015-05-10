@@ -1,3 +1,7 @@
 .margin-top30 {margin-top: 30px;}
+.margin-bot20 {margin-bottom: 20px;}
+.margin-bot10 {margin-bottom: 10px;}
 
 .error-message {padding: 3px; font-size: 12px; color: red}
+
+.pointer {cursor: pointer;}

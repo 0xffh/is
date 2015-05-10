@@ -3,11 +3,11 @@ class AdminAppController extends AppController {
     function beforeFilter() {
 		parent::beforeFilter();
 		
-        $user = $this->Auth->user();
-		if($user['User']['role'] != 'admin') throw New NotFoundException();
+        $a_user = $this->Auth->user();
+		if($a_user['User']['role'] != 'admin') throw New NotFoundException();
 
 		$this->set(array(
-            'user' => $this->Auth->user()
+            'a_user' => $a_user
 		));
     }
 }

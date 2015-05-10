@@ -1,4 +1,7 @@
-<div class='row'>
+<div class='row margin-top30'>
+    <div class='col-md-6'>
+        <?= $this->Html->link('Додати нового користувача', '/admin/users/add', array('class' => 'btn btn-default')); ?>
+    </div>
     <div class='col-md-12'>
         <h3><?= $page_title; ?></h3>
     </div>
