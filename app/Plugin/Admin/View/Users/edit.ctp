@@ -18,16 +18,19 @@
                     )
                 )
             );
-            
-            echo $this->Form->input('UserInfo.email', array('label' => 'E-mail', 'value' => $user['UserInfo']['email']));
-            echo $this->Form->input('UserInfo.name', array('label' => 'Ім\'я', 'value' => $user['UserInfo']['name']));
+			
+			echo '<div class="row margin-bot10">';
+				echo $this->Form->input('UserInfo.name', array('label' => 'Ім\'я', 'value' => $user['UserInfo']['name'], 'div' => 'col-md-4'));
+				echo $this->Form->input('UserInfo.email', array('label' => 'E-mail', 'value' => $user['UserInfo']['email'], 'div' => 'col-md-4'));
+				echo $this->Form->input('User.role', array('label' => 'Роль', 'options' => $roles, 'value' => $user['User']['role'], 'div' => 'col-md-4'));
+			echo '</div>';
+			
             echo $this->Form->input('UserInfo.contact', array('label' => 'Контакти', 'value' => $user['UserInfo']['contact']));
-			echo $this->Form->input('User.role', array('label' => 'Роль', 'options' => $roles, 'value' => $user['User']['role']));
             echo $this->Form->input('UserInfo.content', array('label' => 'Інформація', 'class' => 'form-control ckeditor', 'value' => $user['UserInfo']['content']));
             
             echo '<div class="margin-bot20 clearfix">';
                 echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
-                echo $this->Html->link('Видалити', '/admin/users/delete/'.$user['User']['id'], array('class' => 'btn btn-danger pull-right'));
+                echo $this->Html->link('Видалити', '/admin/users/delete/'.$user['User']['id'], array('class' => 'btn btn-danger pull-right', 'confirm' => 'Вы впевнені?'));
             echo '</div>';
             
             echo $this->Form->end();

@@ -21,6 +21,27 @@ class UsersController extends AdminAppController {
     }
     
 	public function add() {
+        if($this->request->is('post')) {
+            if($this->User->saveAll($this->request->data, array('validate' => 'only'))) {
+                $this->request->data['User']['hash_id'] = md5(date('YmdHis').rand(1, 1000).Configure::read('Security.salt'));
+				$this->request->data['User']['password'] = Security::hash($this->request->data['User']['password'], 'blowfish');
+				$this->request->data['UserInfo']['user_id'] = $this->User->id;
+				
+				if($this->User->saveAssociated($this->request->data, array('validate' => false))) {
+					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$this->User->hash_id, true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$this->User->hash_id, true, 0755)) {
+						$this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
+						$this->redirect('/admin/users/edit/'.$this->User->getInsertID());
+					} else {
+						$this->Session->setFlash('Помилка. Папка користувача не створена', 'flash', array('class' => 'alert-danger'));
+					}
+                } else {
+                    $this->Session->setFlash('Помилка. Користувач не зареєстрований', 'flash', array('class' => 'alert-danger'));
+                }
+            } else {
+				$this->Session->setFlash('Виникла непередбачувана помилка', 'flash', array('class' => 'alert-danger'));
+            }
+		}
+		
 		$this->set(array(
             'page_title' => 'Додати користувача',
 			'roles' => $this->roles,
@@ -76,7 +97,19 @@ class UsersController extends AdminAppController {
         ));
 	}
 	
-    public function delete() {
-    
+    public function delete($id = null) {
+        $this->autoRender = false;
+        
+        if($id === null) throw new NotFoundException();
+
+        $user = $this->User->findById($id);
+        if(empty($user)) throw new NotFoundException();
+
+        if($this->User->delete($id)) {
+            $this->Session->setFlash('Користувач видалений', 'flash', array('class' => 'alert-success'));
+            $this->redirect('/admin/users');
+        } else {
+            $this->Session->setFlash('Помилка. Користувач не видалений', 'flash', array('class' => 'alert-danger'));
+        }
     }
 }

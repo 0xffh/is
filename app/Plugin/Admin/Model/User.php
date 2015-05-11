@@ -3,6 +3,7 @@ class User extends AdminAppModel {
     public $hasOne = array(
 		'UserInfo' => array(
 			'className' => 'Admin.UserInfo',
+			'dependent' => true
 		),
 	);
 
@@ -19,5 +20,4 @@ class User extends AdminAppModel {
 			),
         )
     );
-	
 }
