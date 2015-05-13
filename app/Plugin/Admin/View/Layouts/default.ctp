@@ -5,6 +5,10 @@
         <?php
             echo $this->Html->css(array('bootstrap.min', '/admin/css/style'));
             echo $this->Html->script(array('jquery-1.11.2.min', 'bootstrap.min'));
+            
+            if(isset($special_css)) {
+                foreach($special_css as $css) echo $this->Html->css($css);
+            }
         ?>
     </head>
     <body>

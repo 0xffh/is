@@ -53,6 +53,8 @@
                                     <span class="glyphicon glyphicon-cog"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right" role="menu">
+                                    <li>'.$this->Html->link('Перегляд', '/users/view/'.$item['User']['id'], array('target' => '_blank')).'</li>
+                                    <li role="presentation" class="divider"></li>
                                     <li>'.$this->Html->link('Новий пароль', '/admin/users/password/'.$item['User']['id']).'</li>
                                     <li role="presentation" class="divider"></li>
                                     <li>'.$this->Html->link('Редагувати', '/admin/users/edit/'.$item['User']['id']).'</li>

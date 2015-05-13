@@ -1,6 +1,6 @@
 <div class='row'>
     <div class='col-md-12'>
-        <h3><?= $page_title; ?></h3>
+        <h3><?= $page_title; ?> - <?= $user['User']['login']; ?></h3>
     </div>
 </div>
 

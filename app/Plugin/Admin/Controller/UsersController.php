@@ -28,7 +28,8 @@ class UsersController extends AdminAppController {
 				$this->request->data['UserInfo']['user_id'] = $this->User->id;
 				
 				if($this->User->saveAssociated($this->request->data, array('validate' => false))) {
-					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$this->User->hash_id, true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$this->User->hash_id, true, 0755)) {
+					$last = $this->User->read(null, $this->User->id);
+					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$last['User']['hash_id'], true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$last['User']['hash_id'], true, 0755)) {
 						$this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
 						$this->redirect('/admin/users/edit/'.$this->User->getInsertID());
 					} else {
@@ -38,9 +39,11 @@ class UsersController extends AdminAppController {
                     $this->Session->setFlash('Помилка. Користувач не зареєстрований', 'flash', array('class' => 'alert-danger'));
                 }
             } else {
-				$this->Session->setFlash('Виникла непередбачувана помилка', 'flash', array('class' => 'alert-danger'));
+				$this->Session->setFlash('Помилка. Користувач не зареєстрований', 'flash', array('class' => 'alert-danger'));
             }
 		}
+		
+		$_SESSION['KCFINDER']['disabled'] = false;
 		
 		$this->set(array(
             'page_title' => 'Додати користувача',
@@ -59,6 +62,25 @@ class UsersController extends AdminAppController {
 			)
 		));
         if(empty($user)) throw new NotFoundException();
+		
+        if($this->request->is('post')) {
+            $this->User->id = $id;
+            $this->User->UserInfo->id = $user['UserInfo']['id'];
+
+            $this->User->set($this->request->data);
+            $this->User->UserInfo->set($this->request->data);            
+
+            if($this->User->UserInfo->validates(array('fieldList' => array('email')))) {
+                if($this->User->save($this->request->data, false) && $this->User->UserInfo->save($this->request->data, false)) {
+                    $this->Session->setFlash('Користувач оновлений', 'flash', array('class' => 'alert-success'));
+                    $this->redirect($this->here);
+                } else {
+                    $this->Session->setFlash('Помилка. Користувач не оновлений', 'flash', array('class' => 'alert-danger'));
+                }
+            }
+        }
+		
+		$_SESSION['KCFINDER']['disabled'] = false;
 		
         $this->set(array(
             'page_title' => 'Редагування користувача',            

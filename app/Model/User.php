@@ -15,6 +15,10 @@ class User extends AppModel {
                 'message' => 'Поле не може бути порожнім',
                 'required' => true
             ),
+			'between' => array(
+				'rule' => array('lengthBetween', 3, 100),
+				'message' => 'Значення цього поля повинно бути не менше 3-ох і не більше 100-а символів'
+			),
 			'en' => array(
 				'rule' => '/^[a-zA-Z0-9_-]+$/',
 				'message' => 'Значення повинно містити тільки цифри та букви латиницею'

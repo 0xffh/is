@@ -64,7 +64,8 @@ class UsersController extends AppController {
 				$this->request->data['UserInfo']['user_id'] = $this->User->id;
 				
 				if($this->User->saveAssociated($this->request->data, array('validate' => false))) {
-					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$this->User->hash_id, true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$this->User->hash_id, true, 0755)) {
+					$last = $this->User->read(null, $this->User->id);
+					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$last['User']['hash_id'], true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$last['User']['hash_id'], true, 0755)) {
 						$this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
 						$this->redirect('/users/login');
 					} else {
@@ -85,7 +86,9 @@ class UsersController extends AppController {
 	
     function logout() {
 		$this->autoRender = false;
-
+		
+		$_SESSION['KCFINDER']['disabled'] = true;
+		
 		$this->Auth->logout();
 		$this->redirect($this->Auth->logoutRedirect);
 	}
