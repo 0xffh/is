@@ -251,12 +251,11 @@ class MyMadImageComponent extends Component {
 		
 		$path_parts = pathinfo($src);
 		
-		$file_url = $path_parts['dirname'].DS.$path_parts['filename'].'_thumb.png';		
-		imagepng($dst, $file_url, 9);
+		$file_url = $path_parts['dirname'].DS.$path_parts['filename'].'.jpeg';		
+		imagejpeg($dst, $file_url, 80);
 		
-		$result['result_urls'][] = $file_url;
-		$this->upload_result = $result;
-	
-		return true;
+		unlink($src);
+		
+		return $file_url;
 	}
 }

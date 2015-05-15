@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 07 2015 г., 23:13
+-- Время создания: Май 15 2015 г., 04:09
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -33,13 +33,6 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
---
--- Дамп данных таблицы `menus`
---
-
-INSERT INTO `menus` (`id`, `key`, `name`) VALUES
-(1, 'main', 'Головне');
-
 -- --------------------------------------------------------
 
 --
@@ -58,13 +51,6 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   KEY `item_id` (`item_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
---
--- Дамп данных таблицы `menu_items`
---
-
-INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`) VALUES
-(1, 1, NULL, 'Пункт1', '#', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -79,14 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(15) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `hash_id`, `login`, `password`, `role`, `created`) VALUES
-(4, '4f1335efac6be7399f1ef8748a4663ec', 'admin', '$2a$10$kyCFDQ7U9FEL4H5B83if7.yChRupKkfnNreSClxy9suWowpzT9Uxa', 'admin', '2015-05-07 22:32:01');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -101,17 +80,11 @@ CREATE TABLE IF NOT EXISTS `users_information` (
   `name` varchar(255) DEFAULT NULL,
   `contact` varchar(500) DEFAULT NULL,
   `content` text,
+  `photo` varchar(100) DEFAULT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Дамп данных таблицы `users_information`
---
-
-INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `contact`, `content`, `modified`) VALUES
-(3, 4, NULL, NULL, NULL, NULL, '2015-05-07 22:32:01');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

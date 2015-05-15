@@ -10,6 +10,10 @@
                 foreach($special_css as $css) echo $this->Html->css($css);
             }
         ?>
+        <script type='text/javascript'>
+            function Gv() {}
+            var globalVars = new Gv();
+        </script>
     </head>
     <body>
         <div class='container margin-top30'>

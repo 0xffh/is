@@ -29,7 +29,7 @@ class UsersController extends AdminAppController {
 				
 				if($this->User->saveAssociated($this->request->data, array('validate' => false))) {
 					$last = $this->User->read(null, $this->User->id);
-					if(new Folder(WWW_ROOT.'img'.DS.'users'.DS.$last['User']['hash_id'], true, 0755) && new Folder(WWW_ROOT.'files'.DS.'users'.DS.$last['User']['hash_id'], true, 0755)) {
+					if(new Folder(WWW_ROOT.'files'.DS.'users'.DS.$last['User']['hash_id'], true, 0755)) {
 						$this->Session->setFlash('Користувач зареєстрований', 'flash', array('class' => 'alert-success'));
 						$this->redirect('/admin/users/edit/'.$this->User->getInsertID());
 					} else {

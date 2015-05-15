@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
     
     modal.find('img.target').Jcrop({
-        aspectRatio : true,
+        aspectRatio : 9 / 10,
         minSize : typeof globalVars.minSize === undefined ? false : globalVars.minSize,
         maxSize : typeof globalVars.maxSize === undefined ? false : globalVars.maxSize,
         onSelect : function(coords) {
