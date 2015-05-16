@@ -2,10 +2,14 @@
     <div class='col-md-6'>
         <?= $this->Html->link('Додати нове меню', '/admin/menus/add', array('class' => 'btn btn-default')); ?>
     </div>
-    <div class='col-md-12'>
-        <?= $this->Session->flash(); ?>
-    </div>
 </div>
+
+<div class='row'>
+	<div class='col-md-12'>
+		<?= $this->Session->flash(); ?>
+	</div>
+</div>
+
 <div class='row'>
     <div class='col-md-12'>
         <h3>Додані меню</h3>

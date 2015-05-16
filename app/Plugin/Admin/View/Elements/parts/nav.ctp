@@ -8,6 +8,7 @@
 					"/menus" => "Меню",
 					"/admin/users" => "Користувачі",
 					"/profile" => "Особисте",
+					"/admin/pages/all" => "Сторінки"
 				);
 				$subitems = array(
 					"/menus" => array(
@@ -17,7 +18,7 @@
 					"/profile" => array(
 						"/admin/profile" => "Інформація",
 						"/admin/profile/photo" => "Фотографія",
-						"/admin/profile/files" => "Файли"
+						"/admin/files" => "Файли"
 					)
 				);
 		

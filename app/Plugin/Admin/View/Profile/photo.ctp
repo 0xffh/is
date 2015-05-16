@@ -1,33 +1,35 @@
-<div class='col-md-12'>
-    <h3>Завантажити фото</h3>
-    <?php
-        echo $this->Session->flash();
-        
-        echo "<div class='row'><div class='col-md-12'>";			
-            echo $this->Form->create('UserInfo', array('class' => 'form clearfix', 'enctype' => 'multipart/form-data'));
-            echo $this->Form->input('file[]', array('type' => 'file', 'name' => 'file[]', 'div' => 'form-group', 'label' => 'Завантажити фото', 'required' => true));
-            echo $this->Form->submit('Завантажити', array('class' => 'btn btn-primary', 'name' => 'upload'));
-            echo $this->Form->end();
-        echo "</div></div>";
-        
-        if($user_info['UserInfo']['photo'] !== null) {
-            echo "
-                <div class='row margin-top30'>
-                    <div class='col-md-12'>
-                        <h4>Створити мініатюру</h4>
-                        ".$this->Html->image('/'.$user_info['UserInfo']['photo'], array('class' => 'thumbnail', 'style' => 'max-width:400px'))."
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='col-md-12'>
-                        <button class='btn btn-default make-preview'>Створити мініатюру</button>
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
-            ";
-        }
-    ?>	
+<div class='row'>
+	<div class='col-md-12'>
+		<h3>Завантажити фото</h3>
+		<?php
+			echo $this->Session->flash();
+			
+			echo "<div class='row'><div class='col-md-12'>";			
+				echo $this->Form->create('UserInfo', array('class' => 'form clearfix', 'enctype' => 'multipart/form-data'));
+				echo $this->Form->input('file[]', array('type' => 'file', 'name' => 'file[]', 'div' => 'form-group', 'label' => 'Завантажити фото', 'required' => true));
+				echo $this->Form->submit('Завантажити', array('class' => 'btn btn-primary', 'name' => 'upload'));
+				echo $this->Form->end();
+			echo "</div></div>";
+			
+			if($user_info['UserInfo']['photo'] !== null) {
+				echo "
+					<div class='row margin-top30'>
+						<div class='col-md-12'>
+							<h4>Створити мініатюру</h4>
+							".$this->Html->image('/'.$user_info['UserInfo']['photo'], array('class' => 'thumbnail', 'style' => 'max-width:400px'))."
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-md-12'>
+							<button class='btn btn-default make-preview'>Створити мініатюру</button>
+							<br/>
+							<br/>
+						</div>
+					</div>
+				";
+			}
+		?>	
+	</div>
 </div>
 
 <div class="modal fade bs-example-modal-lg" id='preview-modal'>

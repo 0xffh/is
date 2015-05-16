@@ -55,7 +55,9 @@ class ProfileController extends AdminAppController {
 			if(array_key_exists('upload', $this->request->data)) {
 				if($this->MyMadImage->upload($_FILES, array('folder' => $base_dir))) {
 					$res = $this->MyMadImage->getResult();
-
+					
+					unlink($user_info['UserInfo']['photo']);
+					
 					$this->UserInfo->id = $user_info['UserInfo']['id'];
 					$this->UserInfo->saveField('photo', str_replace(DS, '/', $res['result_urls'][0]));
 
@@ -89,13 +91,6 @@ class ProfileController extends AdminAppController {
 			'current_nav' => '/profile',
 			'user_info' => $user_info,
 			'special_css' => array('jcrop/css/jquery.Jcrop')
-		));
-    }
-	
-    public function files() {
-		$this->set(array(
-            'page_title' => 'Файли',
-			'current_nav' => '/profile',
 		));
     }
 }

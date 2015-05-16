@@ -65,7 +65,10 @@
     
                         echo "
                             <tr>
-                                <td>".$item['User']['login']."</td>
+                                <td>
+                                    ".$item['User']['login']."
+                                    <p class='text-muted small'>/users/view/".$item['User']['id']."</p>
+                                </td>
                                 <td>".$role."</td>
                                 <td>".$item['User']['created']."</td>
                                 <td>".$control."</td>
@@ -75,7 +78,7 @@
                 
                 echo "</tbody>";
                 
-                echo "</table";
+                echo "</table>";
 
                 echo $this->element('parts/pagination');
             }
