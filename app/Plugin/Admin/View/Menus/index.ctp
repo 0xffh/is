@@ -5,15 +5,11 @@
 </div>
 
 <div class='row'>
-	<div class='col-md-12'>
-		<?= $this->Session->flash(); ?>
-	</div>
-</div>
-
-<div class='row'>
     <div class='col-md-12'>
         <h3>Додані меню</h3>
         <?php
+            echo $this->Session->flash();
+            
             if(empty($menus)) {
                 echo $this->element('parts/nothing');
             } else {

@@ -19,11 +19,15 @@
                 )
             );
             
-            echo $this->Form->input('Page.title', array('label' => 'Заголовок'));
-            echo $this->Form->input('Page.content', array('label' => 'Контент', 'class' => 'form-control ckeditor'));
+            echo $this->Form->input('Page.title', array('label' => 'Заголовок', 'value' => $page['Page']['title']));
+            echo $this->Form->input('Page.content', array('label' => 'Контент', 'class' => 'form-control ckeditor', 'value' => $page['Page']['content']));
+            echo $this->Form->input('Page.slug', array('label' => 'Посилання (латиниця)', 'value' => $page['Page']['slug']));
             
-            echo $this->Form->submit('Додати', array('class' => 'btn btn-primary margin-bot20'));
-            
+			echo '<div class="margin-bot20 clearfix">';
+				echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
+				echo $this->Html->link('Видалити', '/admin/pages/delete/'.$page['Page']['id'], array('class' => 'btn btn-danger pull-right', 'confirm' => 'Вы впевнені?'));
+			echo '</div>';
+			
             echo $this->Form->end();
         ?>
     </div>
