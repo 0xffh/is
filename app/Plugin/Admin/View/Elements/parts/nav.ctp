@@ -8,7 +8,9 @@
 					"/menus" => "Меню",
 					"/admin/users" => "Користувачі",
 					"/profile" => "Особисте",
-					"/admin/pages/all" => "Сторінки"
+					"/admin/pages/all" => "Сторінки",
+					"/admin/news" => "Новини",
+					"/admin/reviews" => "Відгуки"
 				);
 				$subitems = array(
 					"/menus" => array(
