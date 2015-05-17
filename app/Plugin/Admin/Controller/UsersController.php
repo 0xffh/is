@@ -70,7 +70,7 @@ class UsersController extends AdminAppController {
             $this->User->set($this->request->data);
             $this->User->UserInfo->set($this->request->data);            
 
-            if($this->User->UserInfo->validates(array('fieldList' => array('email')))) {
+            if($this->User->UserInfo->validates(array('fieldList' => array('email', 'name', 'post', 'contact')))) {
                 if($this->User->save($this->request->data, false) && $this->User->UserInfo->save($this->request->data, false)) {
                     $this->Session->setFlash('Користувач оновлений', 'flash', array('class' => 'alert-success'));
                     $this->redirect($this->here);

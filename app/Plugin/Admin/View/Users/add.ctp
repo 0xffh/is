@@ -37,6 +37,7 @@
                 echo $this->Form->input('UserInfo.contact', array('label' => 'Контакти', 'div' => 'col-md-4'));
             echo '</div>';
             
+			echo $this->Form->input('UserInfo.post', array('label' => 'Посада'));
             echo $this->Form->input('UserInfo.content', array('label' => 'Інформація', 'class' => 'form-control ckeditor'));
             
             echo $this->Form->submit('Додати', array('class' => 'btn btn-primary margin-bot20'));

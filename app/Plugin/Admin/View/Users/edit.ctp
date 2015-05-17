@@ -26,7 +26,8 @@
 			echo '</div>';
 			
             echo $this->Form->input('UserInfo.contact', array('label' => 'Контакти', 'value' => $user['UserInfo']['contact']));
-            echo $this->Form->input('UserInfo.content', array('label' => 'Інформація', 'class' => 'form-control ckeditor', 'value' => $user['UserInfo']['content']));
+            echo $this->Form->input('UserInfo.post', array('label' => 'Посада', 'value' => $user['UserInfo']['post']));
+			echo $this->Form->input('UserInfo.content', array('label' => 'Інформація', 'class' => 'form-control ckeditor', 'value' => $user['UserInfo']['content']));
             
             echo '<div class="margin-bot20 clearfix">';
                 echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
