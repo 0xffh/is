@@ -1,6 +1,13 @@
 <?php
 class ReviewsController extends AppController {
-    public function index() {
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		
+		$this->Auth->allow(array('index', 'all'));
+	}
+	
+	public function index() {
         if($this->request->is('post')) {
             if($this->Review->save($this->request->data, array('validate' => true))) {
                 $this->Session->setFlash('Відгук доданий', 'flash', array('class' => 'alert-success'));

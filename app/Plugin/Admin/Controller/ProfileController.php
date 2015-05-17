@@ -56,7 +56,9 @@ class ProfileController extends AdminAppController {
 				if($this->MyMadImage->upload($_FILES, array('folder' => $base_dir))) {
 					$res = $this->MyMadImage->getResult();
 					
-					unlink($user_info['UserInfo']['photo']);
+					if($user_info['UserInfo']['photo'] != null) {
+						unlink($user_info['UserInfo']['photo']);
+					}
 					
 					$this->UserInfo->id = $user_info['UserInfo']['id'];
 					$this->UserInfo->saveField('photo', str_replace(DS, '/', $res['result_urls'][0]));

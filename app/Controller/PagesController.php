@@ -6,7 +6,7 @@ class PagesController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		
-		$this->Auth->allow(array('homepage'));
+		$this->Auth->allow(array('homepage', 'view'));
 	}
 
 	public function homepage() {

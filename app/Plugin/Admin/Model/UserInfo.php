@@ -8,5 +8,23 @@ class UserInfo extends AdminAppModel {
             'message' => 'Введіть коректну e-mail адресу',
             'allowEmpty' => true
         ),
+		'name' => array(
+			'between' => array(
+				'rule' => array('between', 1, 255),
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів'
+			),
+		),
+		'post' => array(
+			'between' => array(
+				'rule' => array('between', 1, 255),
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів'
+			),
+		),
+		'contact' => array(
+			'between' => array(
+				'rule' => array('between', 1, 255),
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів'
+			),
+		),
 	);
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 17 2015 г., 04:10
+-- Время создания: Май 18 2015 г., 02:48
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Дамп данных таблицы `menu_items`
@@ -84,7 +84,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`)
 (1, 1, NULL, 'Головна', '/', 1),
 (2, 1, NULL, 'Кафедра', '', 2),
 (3, 1, 2, 'Загальна інформація', '/pages/view/kafedra', 1),
-(4, 1, 2, 'Викладацький склад', '', 2),
+(4, 1, 2, 'Викладацький склад', '/users/all', 2),
 (5, 1, 2, 'Історична довідка', '/pages/view/istorichna_dovidka', 3),
 (6, 1, NULL, 'Наука', '/pages/view/naukova_robota', 3),
 (7, 1, NULL, 'Абітурієнту', '', 4),
@@ -97,7 +97,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`)
 (14, 1, 13, 'Електронні видання', '/pages/view/elektronni_vidannya', 1),
 (15, 1, 13, 'Методички', '', 2),
 (16, 1, 13, 'Електронна бібліотека ІС', 'http://library.nuft.edu.ua/ebook/datathree.php?ID=138', 3),
-(17, 1, NULL, 'Відгуки', '/reviews', 7);
+(17, 1, NULL, 'Відгуки', '', 7),
+(18, 1, 17, 'Додати', '/reviews', 1),
+(19, 1, 17, 'Всі відгуки', '/reviews/all', 2);
 
 -- --------------------------------------------------------
 
@@ -204,7 +206,8 @@ CREATE TABLE IF NOT EXISTS `users_information` (
   `user_id` int(11) unsigned NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `contact` varchar(500) DEFAULT NULL,
+  `post` varchar(255) DEFAULT NULL,
+  `contact` varchar(255) DEFAULT NULL,
   `content` text,
   `photo` varchar(100) DEFAULT NULL,
   `modified` datetime NOT NULL,
@@ -216,8 +219,8 @@ CREATE TABLE IF NOT EXISTS `users_information` (
 -- Дамп данных таблицы `users_information`
 --
 
-INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `contact`, `content`, `photo`, `modified`) VALUES
-(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', '', '', NULL, '2015-05-17 01:28:56');
+INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `post`, `contact`, `content`, `photo`, `modified`) VALUES
+(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', NULL, '', '', 'img/users/4227b5a99e0c52d1830ada2144ddae5d.jpeg', '2015-05-18 02:27:15');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

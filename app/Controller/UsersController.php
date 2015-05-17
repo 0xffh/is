@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		
-		$this->Auth->allow(array('login', 'register'));
+		$this->Auth->allow(array('login', 'register', 'all', 'view'));
 	}
 	
     function login() {
@@ -91,5 +91,25 @@ class UsersController extends AppController {
 		
 		$this->Auth->logout();
 		$this->redirect($this->Auth->logoutRedirect);
+	}
+	
+    function all() {
+		$users = $this->User->find('all', array(
+			'contain' => 'UserInfo',
+			'conditions' => array(
+				'User.role' => 'user'
+			)
+		));
+		
+        $this->set(array(
+            'page_title' => 'Викладацький склад',
+			'users' => $users
+        ));	
+	}
+	
+    function view($slug = null) {
+        $this->set(array(
+            'page_title' => ''
+        ));	
 	}
 }
