@@ -2,11 +2,12 @@
     <div class='col-md-6'>
         <h2>Додати нове меню</h2>
         <?php
+            echo $this->Session->flash();
+            
             echo $this->Form->create('Menu', array('class' => 'form'));
             echo $this->Form->input('name', array('label' => 'Назва на українській', 'div' => 'form-group', 'class' => 'form-control'));
             echo $this->Form->input('key', array('label' => 'Ключ (латиниця)', 'div' => 'form-group', 'class' => 'form-control'));
             echo $this->Form->submit('Добавить', array('class' => 'btn btn-primary'));
-            echo $this->Session->flash();
             echo $this->Form->end();
         ?>
     </div>

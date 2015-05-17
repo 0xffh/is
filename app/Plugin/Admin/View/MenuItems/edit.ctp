@@ -2,6 +2,7 @@
     <div class='col-md-8'>
         <h2>Редаугвання пункту меню</h2>
         <?php
+            echo $this->Session->flash();
             echo $this->Form->create('MenuItem', array('class' => 'form'));
             echo $this->Form->input('name', array('label' => 'Текст пунтку', 'div' => 'form-group', 'class' => 'form-control', 'value' => $item['MenuItem']['name']));
             echo $this->Form->input('url', array('label' => 'URL', 'div' => 'form-group', 'class' => 'form-control', 'value' => $item['MenuItem']['url']));
@@ -11,7 +12,6 @@
                 echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
                 echo $this->Html->link('Видалити', '/admin/menu_items/delete/'.$item['MenuItem']['id'], array('class' => 'btn btn-danger pull-right'));
             echo "</div>";
-            echo $this->Session->flash();
             echo $this->Form->end();
         ?>
     </div>

@@ -1,0 +1,36 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,600,800,700&subset=latin,cyrillic');
+
+body {font-family: Open Sans}
+
+img {max-width:100%;}
+* {outline:none !important}
+
+.error-message {padding: 3px; font-size: 14px; color: red}
+
+.content p {text-align: justify; text-indent: 20px;}
+
+.navbar-default {background:none; border-radius:0; border:0}
+
+.top-menu {margin-bottom: 0; border-color: #fff;}
+
+.logo {padding: 10px 15px;}
+.logo img {width: 100%; max-width: 850px;}
+
+.footer {color: #222; background: #81acdc; box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.1); margin-top: 30px;}
+.footer a {color: #fff;}
+.footer .copy {border-top: 1px solid #546f85; font-size: 12px; padding: 10px 0; color: #222;}
+
+#up-button {position:fixed; bottom:15px; left:15px; padding:10px 15px; background:#222; color:#fff; font-size:24px; font-weight:800; text-align:center; cursor:pointer; line-height:15px; transition:bottom 0.2s ease, color 0.2s ease, background 0.2s ease; border-radius:5px; display: none;}
+#up-button span {position:relative; top:-3px}
+#up-button:hover {bottom:20px; background:#fff; color:#222}
+
+@media screen and (max-width: 1100px){
+	.main-menu .nav li {display: block; width: 100%}
+	.main-menu .nav > li > a {margin-bottom:5px; border:none; border-bottom:1px solid #eee; border-radius:0}
+	.main-menu .nav > li > ul {width:100%}
+
+}
+
+@media screen and (max-width: 500px){
+	#up-button {display:none !important}
+}

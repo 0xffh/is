@@ -13,15 +13,18 @@ class AppController extends Controller {
                 'controller' => 'users',
                 'action' => 'login'
             ),
-            'logoutRedirect' => '/',
+            'logoutRedirect' => '/users/login',
             'loginRedirect' => '/',
         ),
-        'Session'
+        'Session', 'MyMenu'
     );	
 	
-	function beforeFilter() {		
+	function beforeFilter() {
+		$this->MyMenu = $this->Components->load('MyMenu');
+		
         $this->set(array(
-            'logged_in' => $this->Auth->loggedIn()
+            'logged_in' => $this->Auth->loggedIn(),
+			'main_menu' => $this->MyMenu->getMenu('main'),
         ));
 	}
 }

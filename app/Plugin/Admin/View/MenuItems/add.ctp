@@ -2,13 +2,14 @@
     <div class='col-md-8'>
         <h2>Додати новий пункт меню</h2>
         <?php
+            echo $this->Session->flash();
+            
             echo $this->Form->create('MenuItem', array('class' => 'form'));
             echo $this->Form->input('name', array('label' => 'Текст пунтку', 'div' => 'form-group', 'class' => 'form-control'));
             echo $this->Form->input('url', array('label' => 'URL', 'div' => 'form-group', 'class' => 'form-control'));
             echo $this->Form->input('item_id', array('label' => 'Є підпунктом', 'div' => 'form-group', 'class' => 'form-control', 'options' => $other_items_list));
             echo $this->Form->input('position', array('label' => 'Позиція', 'div' => 'form-group', 'class' => 'form-control', 'value' => 1));
             echo $this->Form->submit('Додати', array('class' => 'btn btn-primary'));
-            echo $this->Session->flash();
             echo $this->Form->end();
         ?>
     </div>
