@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 class PagesController extends AppController {
-	public $uses = array('Page', 'User');
+	public $uses = array('Page', 'User', 'Alert');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -13,10 +13,17 @@ class PagesController extends AppController {
 		$this->layout = 'homepage';
 		
 		$main = $this->Page->findBySlug('main');
+		$alerts = $this->Alert->find('all', array(
+			'conditions' => array(
+				'Alert.published' => 1
+			),
+			'order' => 'Alert.created DESC'
+		));
 		
 		$this->set(array(
 			'page_title' => 'Кафедра інформаційних систем',
-			'main' => $main
+			'main' => $main,
+			'alerts' => $alerts
 		));
 	}
 	

@@ -10,7 +10,7 @@ class ReviewsController extends AppController {
 	public function index() {
         if($this->request->is('post')) {
             if($this->Review->save($this->request->data, array('validate' => true))) {
-                $this->Session->setFlash('Відгук доданий', 'flash', array('class' => 'alert-success'));
+                $this->Session->setFlash('Відгук доданий. Після опрацювання модератором відгук з\'явиться на сайті', 'flash', array('class' => 'alert-success'));
                 $this->redirect($this->here);
             } else {
                 $this->Session->setFlash('Помилка. Відгук не доданий', 'flash', array('class' => 'alert-danger'));

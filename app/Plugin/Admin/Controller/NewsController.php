@@ -22,7 +22,7 @@ class NewsController extends AdminAppController {
         if($this->request->is('post')) {
 			$a_user = $this->Auth->user();
             $this->request->data['News']['user_id'] = $a_user['User']['id'];
-			$this->request->data['News']['slug'] = $this->MyTranslate->toUrl($this->request->data['News']['title']).'-'.date('YmdHis');
+			$this->request->data['News']['slug'] = $this->MyTranslate->toUrl($this->request->data['News']['title']);
 			
             if($this->News->save($this->request->data, array('validate' => true))) {
 				$last = $this->News->read(null, $this->News->id);

@@ -6,6 +6,7 @@ img {max-width:100%;}
 * {outline:none !important}
 
 .margin-top10 {margin-top: 10px;}
+.margin-top0 {margin-top: 0px;}
 
 .error-message {padding: 3px; font-size: 14px; color: red}
 
@@ -17,6 +18,9 @@ img {max-width:100%;}
 .logo img {width: 100%; max-width: 850px;}
 
 .page p {text-align: justify;}
+.page img {margin-right: 20px; margin-bottom: 20px;}
+.page table td {padding-left: 5px; padding-right: 5px;}
+
 .users .thumbnail {height: 395px; overflow: hidden;}
 
 .footer {color: #222; background: #81acdc; box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.1); margin-top: 30px;}

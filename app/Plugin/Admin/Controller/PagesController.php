@@ -28,7 +28,7 @@ class PagesController extends AdminAppController {
         if($this->request->is('post')) {
 			$a_user = $this->Auth->user();
             $this->request->data['Page']['user_id'] = $a_user['User']['id'];
-			$this->request->data['Page']['slug'] = $this->MyTranslate->toUrl($this->request->data['Page']['title']).'-'.date('YmdHis');
+			$this->request->data['Page']['slug'] = $this->MyTranslate->toUrl($this->request->data['Page']['title']);
 			
             if($this->Page->save($this->request->data, array('validate' => true))) {
 				$last = $this->Page->read(null, $this->Page->id);

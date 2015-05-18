@@ -17,11 +17,11 @@
         <?= $this->element('parts/top-nav'); ?>
         <div class='container'>
             <div class='row content'>
-                <div class='col-md-8'>
-                    <?= $this->fetch('content'); ?>
-                </div>
-                <div class='col-md-4'>
+                <div class='col-md-4 col-md-push-8'>
                     <?= $this->element('parts/right-panel'); ?>
+                </div>
+                <div class='col-md-8 col-md-pull-4'>
+                    <?= $this->fetch('content'); ?>
                 </div>
             </div>
         </div>
