@@ -20,7 +20,7 @@ class User extends AdminAppModel {
 			),
 			'en' => array(
 				'rule' => '/^[a-zA-Z0-9_-]+$/',
-				'message' => 'Значення повинно містити тільки цифри та букви латиницею'
+				'message' => 'Значення повинно містити тільки цифри та букви латиницею, а також символи "-" та "_"'
 			),
             'unique' => array(
                 'rule' => 'isUniqueLogin',

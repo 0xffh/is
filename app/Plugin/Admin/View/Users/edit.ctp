@@ -31,7 +31,7 @@
             
             echo '<div class="margin-bot20 clearfix">';
                 echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
-                echo $this->Html->link('Переглянути', '/users/view/'.$user['User']['id'], array('class' => 'btn btn-default margin-left15 pull-left', 'target' => '_blank'));
+                echo $this->Html->link('Переглянути', '/users/view/'.$user['User']['hash_id'], array('class' => 'btn btn-default margin-left15 pull-left', 'target' => '_blank'));
 				echo $this->Html->link('Видалити', '/admin/users/delete/'.$user['User']['id'], array('class' => 'btn btn-danger pull-right', 'confirm' => 'Вы впевнені?'));
             echo '</div>';
             

@@ -17,13 +17,15 @@ class UserInfo extends AdminAppModel {
 		'post' => array(
 			'between' => array(
 				'rule' => array('between', 1, 255),
-				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів'
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів',
+				'allowEmpty' => true
 			),
 		),
 		'contact' => array(
 			'between' => array(
 				'rule' => array('between', 1, 255),
-				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів'
+				'message' => 'Значення цього поля повинно бути не менше 1-го і не більше 255-и символів',
+				'allowEmpty' => true
 			),
 		),
 	);

@@ -21,7 +21,7 @@
 
             echo '<div class="margin-bot10 clearfix">';
                 echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));
-                echo $this->Html->link('Перегляд', '/users/view/'.$user['User']['id'], array('class' => 'btn btn-info margin-left15', 'target' => '_blank'));
+                echo $this->Html->link('Перегляд', '/users/view/'.$user['User']['hash_id'], array('class' => 'btn btn-info margin-left15', 'target' => '_blank'));
             echo '</div>';
 
 			echo '<div class="row margin-bot10">';

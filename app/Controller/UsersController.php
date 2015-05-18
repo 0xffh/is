@@ -108,8 +108,19 @@ class UsersController extends AppController {
 	}
 	
     function view($slug = null) {
+		if($slug === null) throw new NotFoundException();
+		
+		$user = $this->User->find('first', array(
+			'contain' => 'UserInfo',
+			'conditions' => array(
+				'User.hash_id' => $slug
+			)
+		));
+		if(empty($user)) throw new NotFoundException();
+		
         $this->set(array(
-            'page_title' => ''
+            'page_title' => $user['UserInfo']['name'],
+			'user' => $user,
         ));	
 	}
 }

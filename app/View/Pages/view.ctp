@@ -2,6 +2,6 @@
 	<h1><?= $page['Page']['title']; ?></h1>
 </div>
 
-<div class='pageContent'>
+<div class='pageContent page'>
 	<?= $page['Page']['content']; ?>
 </div>
