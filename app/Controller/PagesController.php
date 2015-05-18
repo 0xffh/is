@@ -10,8 +10,13 @@ class PagesController extends AppController {
 	}
 
 	public function homepage() {
+		$this->layout = 'homepage';
+		
+		$main = $this->Page->findBySlug('main');
+		
 		$this->set(array(
 			'page_title' => 'Кафедра інформаційних систем',
+			'main' => $main
 		));
 	}
 	
