@@ -111,7 +111,11 @@ class UsersController extends AppController {
 		if($slug === null) throw new NotFoundException();
 		
 		$user = $this->User->find('first', array(
-			'contain' => 'UserInfo',
+			'contain' => array(
+				'UserInfo' => array(
+					'order' => 'UserInfo.name ASC'
+				)
+			),
 			'conditions' => array(
 				'User.hash_id' => $slug
 			)

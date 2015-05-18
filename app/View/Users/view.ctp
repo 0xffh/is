@@ -17,6 +17,9 @@
             $post = $user['UserInfo']['post'];
             if(!empty($post)) echo "<p class='margin-top10'>".$post."</p>";
                 
+            $email = $user['UserInfo']['email'];	
+            if(!empty($email)) echo "<div class='margin-top10 alert alert-success'><a href='mailto:".$email."'>".$email."</a></div>";
+            
             $contact = $user['UserInfo']['contact'];	
             if(!empty($contact)) echo "<div class='margin-top10 alert alert-info'>".nl2br($contact)."</div>";
             

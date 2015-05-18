@@ -10,6 +10,7 @@
 					"/profile" => "Особисте",
 					"/admin/pages/all" => "Сторінки",
 					"/admin/news" => "Новини",
+					"/admin/alerts" => "Оголошення",
 					"/admin/reviews" => "Відгуки"
 				);
 				$subitems = array(

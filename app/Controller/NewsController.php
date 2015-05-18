@@ -8,6 +8,9 @@ class NewsController extends AppController {
 
 	public function index() {
 		$this->paginate = array(
+			'conditions' => array(
+				'News.published' => 1
+			),
             'limit' => 15,
             'order' => 'News.created DESC'
 		);
@@ -23,7 +26,12 @@ class NewsController extends AppController {
 	public function view($slug = null) {
 		if($slug === null) throw new NotFoundException();
 		
-        $news = $this->News->findBySlug($slug);
+        $news = $this->News->find('first', array(
+			'conditions' => array(
+				'News.slug' => $slug,
+				'News.published' => 1
+			)
+		));
         if(empty($news)) throw new NotFoundException();
 		
 		$this->set(array(

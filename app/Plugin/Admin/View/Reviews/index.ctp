@@ -1,6 +1,6 @@
 <div class='row margin-top30'>
     <div class='col-md-6'>
-        <?= $this->Html->link('Переглянути відгуки', '/reviews', array('class' => 'btn btn-default', 'target' => '_blank    ')); ?>
+        <?= $this->Html->link('Переглянути відгуки', '/reviews/all', array('class' => 'btn btn-default', 'target' => '_blank    ')); ?>
     </div>
 </div>
 

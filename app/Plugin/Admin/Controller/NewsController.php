@@ -87,4 +87,26 @@ class NewsController extends AdminAppController {
             $this->Session->setFlash('Помилка. Новина не видалена', 'flash', array('class' => 'alert-danger'));
         }
 	}
+	
+    public function changestatus($id = null) {
+        $this->autoRender = false;
+        
+        if($id === null) throw new NotFoundException();
+
+        $news = $this->News->findById($id);
+        if(empty($news)) throw new NotFoundException();
+        
+        $this->News->id = $id;
+        $this->request->data['News']['published'] = $news['News']['published'] ? 0 : 1;
+        
+        $a_user = $this->Auth->user();
+        $this->request->data['News']['user_id'] = $a_user['User']['id'];
+        
+        if($this->News->save($this->request->data, false)) {
+            $this->Session->setFlash('Новина оновлена', 'flash', array('class' => 'alert-success'));
+        } else {
+            $this->Session->setFlash('Помилка. Новина не оновлена', 'flash', array('class' => 'alert-danger'));
+        }
+        $this->redirect('/admin/news');
+    }
 }
