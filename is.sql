@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 18 2015 г., 18:14
+-- Время создания: Май 18 2015 г., 18:41
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `alerts` (
   `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `type` varchar(20) NOT NULL,
+  `published` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
