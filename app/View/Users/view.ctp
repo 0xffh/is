@@ -19,6 +19,8 @@
                 
             $contact = $user['UserInfo']['contact'];	
             if(!empty($contact)) echo "<div class='margin-top10 alert alert-info'>".nl2br($contact)."</div>";
+            
+            echo "<p class='margin-top10'><a href='/users/files/".$user['User']['hash_id']."'>Файли співробітника</a></p>";
         ?>
     </div>
     <div class="col-md-8">

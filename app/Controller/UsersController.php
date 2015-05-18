@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		
-		$this->Auth->allow(array('login', 'register', 'all', 'view'));
+		$this->Auth->allow(array('login', 'register', 'all', 'view', 'files'));
 	}
 	
     function login() {
@@ -120,6 +120,28 @@ class UsersController extends AppController {
 		
         $this->set(array(
             'page_title' => $user['UserInfo']['name'],
+			'user' => $user,
+        ));	
+	}
+	
+	public function files($slug = null) {
+		if($slug === null) throw new NotFoundException();
+		
+		$user = $this->User->find('first', array(
+			'contain' => array(
+				'UserInfo',
+				'File' => array(
+					'order' => 'File.created DESC'
+				)
+			),
+			'conditions' => array(
+				'User.hash_id' => $slug
+			)
+		));
+		if(empty($user)) throw new NotFoundException();
+		
+        $this->set(array(
+            'page_title' => 'Файли співробітника - '.$user['UserInfo']['name'],
 			'user' => $user,
         ));	
 	}

@@ -8,6 +8,13 @@ class User extends AppModel {
 		),
 	);
 
+    public $hasMany = array(
+        'File' => array(
+            'className' => 'File',
+            'foreignKey' => 'user_id'
+        )
+	);
+	
     public $validate = array(
         'login' => array(
             'notEmpty' => array(
