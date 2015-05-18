@@ -69,7 +69,8 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-    CakePlugin::load(array('Admin' => array('routes' => true)));
+CakePlugin::load(array('Admin' => array('routes' => true)));
+CakePlugin::load(array('User' => array('routes' => true)));
 /**
  * To prefer app translation over plugin translation, you can set
  *
