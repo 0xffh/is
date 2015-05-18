@@ -2,7 +2,7 @@
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 class UsersController extends AdminAppController {
-	private $roles = array('admin' => 'Адміністратор', 'moder' => 'Модератор', 'user' => 'Користувач');
+	private $roles = array('admin' => 'Адміністратор', 'user' => 'Користувач');
 	
     public function index() {
         

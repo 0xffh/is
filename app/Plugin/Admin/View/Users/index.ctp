@@ -39,9 +39,6 @@
                             case 'user' :
                                 $role = '<span class="label label-info">Користувач</span>';
                             break;
-                            case 'moder' :
-                                $role = '<span class="label label-default">Модератор</span>';
-                            break;
                             case 'admin' :
                                 $role = '<span class="label label-success">Адміністратор</span>';
                             break;

@@ -33,9 +33,6 @@ class UsersController extends AppController {
 						case 'user' :
 							$this->redirect('/user');
 						break;
-						case 'moder' :
-							$this->redirect('/moder');
-						break;
 						case 'admin' :
 							$this->redirect('/admin');
 						break;
