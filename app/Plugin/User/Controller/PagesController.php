@@ -64,11 +64,7 @@ class PagesController extends UserAppController {
         if(empty($page)) throw new NotFoundException();
 		
         if($this->request->is('post')) {
-            $this->Page->isUpdate = $id;
             $this->Page->id = $id;
-			
-			$a_user = $this->Auth->user();
-            $this->request->data['Page']['user_id'] = $a_user['User']['id'];
 			
             if($this->Page->save($this->request->data, true)) {
 				$last = $this->Page->read(null, $this->Page->id);

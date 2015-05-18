@@ -21,7 +21,6 @@
             
             echo $this->Form->input('Page.title', array('label' => 'Заголовок', 'value' => $page['Page']['title']));
             echo $this->Form->input('Page.content', array('label' => 'Контент', 'class' => 'form-control ckeditor', 'value' => $page['Page']['content']));
-            echo $this->Form->input('Page.slug', array('label' => 'Посилання (латиниця)', 'value' => $page['Page']['slug']));
             
 			echo '<div class="margin-bot20 clearfix">';
 				echo $this->Form->submit('Оновити', array('class' => 'btn btn-primary pull-left'));

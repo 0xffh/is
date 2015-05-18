@@ -14,11 +14,11 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $message; ?></h2>
+<h2>404 <?php echo $message; ?></h2>
 <p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
+	<strong><?php echo __d('cake', 'Помилка'); ?>: </strong>
 	<?php printf(
-		__d('cake', 'The requested address %s was not found on this server.'),
+		__d('cake', 'Запитувана адреса %s не знайдена на цьому сервері.'),
 		"<strong>'{$url}'</strong>"
 	); ?>
 </p>
