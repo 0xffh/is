@@ -34,7 +34,7 @@ class ProfileController extends UserAppController {
 		$this->set(array(
             'page_title' => 'Редагування особистої інформації',
             'user' => $user,
-			'current_nav' => '/profile',
+			'current_nav' => '/user/profile',
 		));
     }
 	
@@ -90,7 +90,7 @@ class ProfileController extends UserAppController {
 		
 		$this->set(array(
             'page_title' => 'Редагування фотографії',
-			'current_nav' => '/profile',
+			'current_nav' => '/user/profile/photo',
 			'user_info' => $user_info,
 			'special_css' => array('jcrop/css/jquery.Jcrop')
 		));
@@ -126,7 +126,7 @@ class ProfileController extends UserAppController {
         $this->set(array(
             'page_title' => 'Редагування паролю користувача',            
             'user' => $user,
-			'current_nav' => '/admin/users',
+			'current_nav' => '/user/profile/password',
         ));
 	}
 }

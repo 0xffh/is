@@ -18,7 +18,7 @@ class FilesController extends UserAppController {
 		$this->set(array(
             'page_title' => 'Файли користувача',
 			'files' => $files,
-			'current_nav' => '/profile'
+			'current_nav' => '/user/files'
 		));
     }
 	
