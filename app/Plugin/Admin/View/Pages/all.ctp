@@ -28,6 +28,12 @@
 				echo "<tbody>";
 				
                     foreach($pages as $item) {
+						if(!is_null($item['Page']['user_id'])) {
+							$user = $item['User']['login'].' / '.$item['User']['UserInfo']['name'].'<p class="text-muted small">'.' <i>'.$item['User']['UserInfo']['email'].'</i></p>';
+						} else {
+							$user = '';
+						}
+						
                         $control = '
                             <div class="btn-group btn-group-xs">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -41,17 +47,14 @@
                                 </ul>
                             </div>
                         ';
-    
+						
                         echo "
                             <tr>
                                 <td>
                                     ".$item['Page']['title']."
                                     <p class='text-muted small'>/pages/view/".$item['Page']['slug']."</p>
                                 </td>
-								<td>
-									".$item['User']['login']." / ".$item['User']['UserInfo']['name']."
-									<p class='text-muted small'>"." <i>".$item['User']['UserInfo']['email']."</i></p>
-								</td>
+								<td>".$user."</td>
 								<td>".$item['Page']['modified']."</td>
                                 <td>".$control."</td>
                             </tr>

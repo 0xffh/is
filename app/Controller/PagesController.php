@@ -1,7 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 class PagesController extends AppController {
-	public $uses = array('Page', 'User', 'Alert');
+	public $uses = array('Page', 'News', 'User', 'Alert');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -12,7 +12,15 @@ class PagesController extends AppController {
 	public function homepage() {
 		$this->layout = 'homepage';
 		
-		$main = $this->Page->findBySlug('main');
+		$this->paginate = array(
+			'conditions' => array(
+				'News.published' => 1
+			),
+            'limit' => 5,
+            'order' => 'News.created DESC'
+		);
+		$news = $this->paginate($this->News);
+		
 		$alerts = $this->Alert->find('all', array(
 			'conditions' => array(
 				'Alert.published' => 1
@@ -22,7 +30,7 @@ class PagesController extends AppController {
 		
 		$this->set(array(
 			'page_title' => 'Кафедра інформаційних систем',
-			'main' => $main,
+			'news' => $news,
 			'alerts' => $alerts
 		));
 	}

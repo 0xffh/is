@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 18 2015 г., 21:13
+-- Время создания: Май 23 2015 г., 03:17
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `alerts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -62,15 +62,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Дамп данных таблицы `files`
---
-
-INSERT INTO `files` (`id`, `user_id`, `title`, `info`, `slug`, `modified`, `created`) VALUES
-(1, 2, 'Приклад документу ворд', '', 'Dokument_Microsoft_Word.doc', '2015-05-18 21:03:51', '2015-05-18 21:03:51'),
-(2, 2, 'Приклад документу ексель', 'Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис Опис ', 'List_Microsoft_Excel_97-2003.xls', '2015-05-18 21:12:09', '2015-05-18 21:04:10');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -108,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Дамп данных таблицы `menu_items`
@@ -134,7 +126,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`)
 (17, 1, NULL, 'Відгуки', '', 7),
 (18, 1, 17, 'Додати', '/reviews', 1),
 (19, 1, 17, 'Всі відгуки', '/reviews/all', 2),
-(20, 1, NULL, 'Новини', '/news', 1);
+(21, 1, 2, 'Привітання', '/pages/view/main', 0);
 
 -- --------------------------------------------------------
 
@@ -144,7 +136,7 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `item_id`, `name`, `url`, `position`)
 
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(500) NOT NULL,
   `content` text,
@@ -154,15 +146,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Дамп данных таблицы `news`
---
-
-INSERT INTO `news` (`id`, `user_id`, `title`, `description`, `content`, `slug`, `published`, `modified`, `created`) VALUES
-(1, 1, 'Модний екскурс довжиною в століття', 'В університет відбулося яскраве шоу – конкурс «Містер і Міс НУХТ»', '<p><img alt="" src="/upload/images/IMG_4831.jpg" style="width: 550px; height: 366px; float: left;" /></p>\r\n\r\n<p><strong>29 квітня</strong> в актовій залі університету відбулося чергове яскраве студентське дійство &ndash; традиційний конкурс &laquo;Містер і Міс НУХТ&raquo;.</p>\r\n\r\n<p>Цього року тема конкурсу &ndash; &laquo;100 років моди за 100 хвилин&raquo; й занурення у її&nbsp; примхливий і вибагливий світ розпочалося з конкурсу &laquo;Дефіле. Візитка&raquo;, в ході якого кожна пара мала представити модні тренди одного із десятиліть минулого сторіччя. Тут глядачі побачили і аристократичні 1910-ті роки від пари №1 &ndash; студентів факультету автоматизації та комп&rsquo;ютерних систем (АКС) Анни Литвин і Олексія Кравця, і відверті та дещо розпусні 20-ті від пари №2 &ndash; студентів факультету технології м&rsquo;ясо-молочних і парфумерно-косметичних продуктів (ТММПКП) Вікторії Панчук та Владислава Пафика. &nbsp;Далі настав час романтичного консерватизму 30-х у виконанні пари №3 &ndash; представників факультету технології оздоровчих продуктів та харчової експертизи (ХЕТОП) Альони Сухоцької та Андрія Загребельного. Одразу за ними на сцену вийшли представники &laquo;воєнного прагматизму&raquo;, пара №4 з факультету обліку, фінансів та підприємницької діяльності (ОФПД) &ndash; стримана Христина Столока та справжній вояка часів Великої Вітчизняної Григорій Томащук. Елітарний шик 50-х разом із відвертими сукнями, що гарно підкреслюють пишні форми дівчат та яскраві піджаки, що виділяють із натовпу хлопців, продемонстрували студентка факультету хлібопекарських і кондитерських виробництв (ХКВ) Анастасія Максюк і студент факультету інженерної механіки та пакувальної техніки (ІМПТ) Валентин Туфекчі &ndash; пара №5. Не встигли вони покинути авансцену, як на неї одразу &laquo;вистрибнули&raquo; 60-ті разом із своєю вільною та експресивною манірністю, представлені парою №6 &ndash; студентами факультету бродильних, консервних і цукрових виробництв (БКЦВ) Іриною Гуменюк та Олександром Руденком. Справжній переворот у моді вдався наступній парі під №7 &ndash; представникам покоління хіпі 70-х Анастасії Поліщук та Владиславу Лаврезі (факультет біотехнології та екологічного контролю, БТЕК). Бунтарський норов 80-х явила пара №8 &ndash; Руслана Шмаргун та Олександр Кравчук (факультет готельно-ресторанного та туристичного бізнесу, ГРТБ). Далі чекали роки шаленої моди 90-х від пари №9 &ndash; студентів факультету економіки і менеджменту (ЕіМ) Ірини Островської та Михайла Пастуха. І останньою за часом та не останньою за значенням вийшла пара №10 &ndash; &laquo;жителі&raquo; початку нульових та яскраві представники Міленіум стайл Оксана Мала і Богдан Березенський (факультет енергетики і енергоменеджменту, ЕіЕ).</p>\r\n\r\n<p>Після дефіле на претендентів чекало, напевне, найтяжче випробування &ndash; конкурс &laquo;Моє творче я&raquo;. Багато пар вирішили дещо відійти від основної тематики свого часу, тому глядачі побачили нетиповий для 1910-х пасадобль від пари №1 та вальс від пари №2. Першими, хто спробував відобразити у своєму творчому завданні настрої того часу були представники 30-х з драйвовим танцем прибиральників. А вже пара №5 в повній мірі змогла продемонструвати в своєму номері душу свого періоду із запальним танцювальним номером під справжній хіт того часу &laquo;Long Tall Sally&raquo;. Не можна оминути увагою не менш захоплюючу постановку на пілоні пари №4 із ходьбою по повітрю, зворушливу промову &laquo;містера&raquo; від пари №8 та агресивний танець бунтарки й представника &laquo;Поліції НУХТ&raquo; &ndash; пари №10.</p>\r\n\r\n<p>Наступним етапом змагання було &laquo;Дефіле у купальниках&raquo; і &laquo;Чоловіче дефіле&raquo;, які викликали шквал емоцій у глядачів. А завершився конкурс традиційним &laquo;Вечірнім дефіле&raquo;, де юнаки вийшли у вечірніх костюмах, а дівчата &ndash; в елегантних платтях.</p>\r\n\r\n<p>Між конкурсними виходами присутнім у залі створювали настрій талановиті представники різних факультетів нашого університету.</p>\r\n\r\n<p>Щиро привітала учасників і гостей свята та вручила всім конкурсантам дипломи учасників конкурсу проректор з науково-педагогічної та виховної роботи Лариса Арсеньєва.</p>\r\n\r\n<p>На оголошення результатів усі чекали з величезним нетерпінням. Журі, у складі: хореографа, кращого букера України, менеджера Міжнародної агенції моделей &laquo;Л моделс&raquo; Світлани Ляховецької, директора школи моделей Міжнародної агенції моделей &laquo;Л моделс&raquo; Галини Лазаренко, артистки театру і кіно, співачки, телерадіоведучої Національної телерадіокомпанії України Алли Загинайко, доцента Національного університету технологій та дизайну, директора студентського центру моди Марії Івасенко та народного артиста України, кавалера Ордена &laquo;Слави&raquo; Володимира Талашка, дуже довго та старанно рахувало голоси, але нарешті дійшло згоди.</p>\r\n\r\n<p>Та спочатку нагороди отримали &laquo;Міс і Містер глядацьких симпатій&raquo;, яких обирали глядачі в залі, вказавши номери своїх фаворитів на запрошеннях. Ними стали студенти факультету ОФПД Христина Столока та Григорій Томащук.</p>\r\n\r\n<p>Григорій Томащук здобув також звання &laquo;Віце-містера&raquo;, а титул &laquo;Містер НУХТ-2015&raquo; дістався Валентину Туфекчі (факультет ІМПТ).</p>\r\n\r\n<p>Головна інтрига розгорнулася навколо титулу &laquo;Віце-міс&raquo; &ndash; після підрахунку балів з&rsquo;ясувалося, що у 2015 році виявилась не одна &laquo;Віце-міс&raquo;, а цілих три! Ними стали Христина Столока (факультет ОФПД), Анастасія Максюк (факультет ХКВ) та Ірина Островська (факультет ЕіМ).</p>\r\n\r\n<p>Цьогорічною &laquo;Міс університету&raquo; стала Оксана Мала (факультет енергетики і енергоменеджменту). Саме вона отримала корону від &laquo;Міс НУХТ-2013&raquo; Вероніки Колосової (нагадаємо, що у минулому році через трагічні події у нашій країні конкурс не проводився).</p>\r\n\r\n<p>Щиро вітаємо наших харизматичних, мужніх юнаків та чарівних, витончених дівчат із перемогою й дякуємо всім, хто подарував таке феєричне свято!</p>\r\n', 'modniy_ekskurs_dovzhinoyu_v_stolittya', 1, '2015-05-18 20:24:20', '2015-05-18 20:06:47'),
-(2, 1, 'День торжества безсмертного подвигу народу', 'На факультеті технології м’ясо-молочних і парфумерно-косметичних продуктів відбувся круглий стіл з нагоди 70-ї річниці Перемоги', '<p>29 квітня на факультеті технології м&rsquo;ясо-молочних і парфумерно-косметичних продуктів відбувся круглий стіл з нагоди 70-ї річниці Перемоги над німецько-фашистськими загарбниками.</p>\r\n\r\n<p>Заступник декана по роботі зі студентами Ольга Слободян інформувала про відзначення 9 травня Дня Перемоги у країнах антигітлерівської коаліції та 8-9 травня Дня пам&rsquo;яті та примирення. Це найбільше свято для громадян України. За офіційною статистикою лише військові втрати України у Другій світовій війні становили 7 млн. осіб, понад 3,9 млн. &ndash; &nbsp;мирних жителів, 2,4 млн. молодих працездатних українців вивезли на примусові роботи до Німеччини.</p>\r\n\r\n<p>День Перемоги &ndash; день торжества безсмертного подвигу народу-переможця над фашизмом, всенародної пам&rsquo;яті про його боротьбу за свободу і незалежність. Всі присутні хвилиною мовчання вшанували пам&rsquo;ять загиблих у Другій світовій війні.</p>\r\n\r\n<p><img alt="" src="http://nuft.edu.ua/news/554213357cf1d/gallery/3b6e7f157e83514f19268add0a8189ef.JPG" style="width: 350px; height: 267px; float: left;" /><img alt="" src="http://nuft.edu.ua/news/554213357cf1d/gallery/71dc2051e6fa79aa88ded760b42139bb.JPG" style="width: 350px; height: 234px; float: left;" /><img alt="" src="http://nuft.edu.ua/news/554213357cf1d/gallery/e061adffa97b505bf988ad9dc5b5c9b2.JPG" style="float: left; width: 350px; height: 525px;" /></p>\r\n', 'den__torzhestva_bezsmertnogo_podvigu_narodu', 1, '2015-05-18 20:30:42', '2015-05-18 20:27:55');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -172,7 +156,7 @@ INSERT INTO `news` (`id`, `user_id`, `title`, `description`, `content`, `slug`, 
 
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `slug` varchar(255) NOT NULL,
@@ -180,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Дамп данных таблицы `pages`
@@ -196,8 +180,7 @@ INSERT INTO `pages` (`id`, `user_id`, `title`, `content`, `slug`, `modified`, `c
 (6, 1, 'Гуртожиток', '<p>Гуртожиток №4</p>\r\n\r\n<p>Київ, проспект&nbsp; Науки 36</p>\r\n\r\n<p>Тел. 525-01-70</p>\r\n\r\n<p><strong><em>Завідувач </em></strong>&ndash; Шеменюк Наталія Віталіївна</p>\r\n\r\n<p style="text-align:left"><iframe frameborder="0" height="450" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.5305700081703!2d30.530794800000002!3d50.39394889999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c8ad51b996ff%3A0xb810cb7d7dfc7ea8!2z0L_RgNC-0YHQvy4g0J3QsNGD0LrQuCwgMzYsINCa0LjRl9CyLCDQvNGW0YHRgtC-INCa0LjRl9Cy!5e0!3m2!1sru!2sua!4v1410814686202" style="border:0" width="600"></iframe></p>\r\n', 'gurtozhitok', '2015-05-17 03:47:27', '2015-05-17 03:47:14'),
 (7, 1, 'Необхідно знати', '<h2 style="text-align: center;">Методи викладання і навчання</h2>\r\n\r\n<p>Навчальні семестри поділені на 2 чверті. У кожній чверті студент вивчає не більше шести дисциплін. Вивчення дисципліни може тривати одну чверть або кілька. Зміст кожної дисципліни поділений на модулі. Кожний змістовний модуль є логічно завершеною, системно впорядкованою і структурованою за окремими навчальними елементами частиною теоретичних знань та практичних умінь і навичок навчальної дисципліни. Кількість модулів визначається з урахуванням обсягу навчальної дисципліни. Для дисциплін, які вивчаються протягом 1 чверті:</p>\r\n\r\n<p>1,0 &ndash; 1,5 кредиту &ndash; 2 модулі;</p>\r\n\r\n<p>2,0 &ndash; 2,5 кредиту &ndash; 3 модулі.</p>\r\n\r\n<p>Для дисциплін, які вивчаються протягом 2-х чвертей і мають обсяги 2,0 &ndash; 2,5 кредиту &ndash; 4 або 5 модулів.</p>\r\n\r\n<p>Для дисциплін, які вивчаються протягом 3-х і більше чвертей &ndash; 2 або 3 модулі у кожній чверті.</p>\r\n\r\n<p>Кожний модуль оцінюється визначеною кількістю балів. Рейтингове оцінювання виконання студентами окремих елементів модулів проводиться на лекціях, на лабораторних заняттях (захист лабораторних робіт, тестування); на практичних або семінарських заняттях (письмові контрольні роботи за окремими модулями, тестування, виступи); під час перевірки домашніх завдань; під час захисту курсового проекту (роботи) в кафедральній комісії; під час перевірки звіту з практики або під час проведення підсумкового модульного контролю у вигляді іспиту (не більше 40 балів із 100). Кількість іспитів у семестрі допускається не більше трьох.</p>\r\n\r\n<p>Кількість курсових проектів (робіт) у семестрі не більше двох.</p>\r\n\r\n<p>На четвертому курсі за освітньо-кваліфікаційним рівнем &ldquo;бакалавр&rdquo; денної форми підготовки передбачено проведення проектно-технологічної практики протягом 4-х тижнів та переддипломної практики протягом 2-х тижнів. Після проходження практики студент складає звіт та захищає результати перед кафедральною комісією.</p>\r\n\r\n<p>По закінченню навчання за освітньо-кваліфікаційним рівнем &ldquo;бакалавр&rdquo; студент виконує та захищає бакалаврський дипломний проект, якому передує дипломне проектування тривалістю 7 тижнів.</p>\r\n\r\n<p>На п&rsquo;ятому курсі навчання за освітньо-кваліфікаційним рівнем &ldquo;спеціаліст&rdquo; денної форми підготовки передбачено проведення конструкторської практики протягом 4-х тижнів та переддипломної практики протягом 2-х тижнів.</p>\r\n\r\n<p>Навчання за освітньо-кваліфікаційним рівнем &ldquo;спеціаліст&rdquo; закінчується захистом дипломної роботи (проекту).</p>\r\n\r\n<p>Навчання за освітньо-кваліфікаційним рівнем &ldquo;магістр&rdquo; закінчується захистом магістерської роботи.</p>\r\n\r\n<h2 style="text-align: center;">Шкала та критерії виставлення оцінок</h2>\r\n\r\n<p style="text-align: left;">Кредитно-модульна система передбачає запровадження рейтингової системи оцінювання знань студентів і шкалу за єдиними критеріями відповідно до таблиці</p>\r\n\r\n<p style="text-align: left;">&nbsp;</p>\r\n\r\n<table border="1" cellpadding="0" cellspacing="0" style="line-height: 20.3999996185303px; width: 857px;">\r\n	<tbody>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p><span><strong>За &nbsp;ECTS</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><strong>За національною шкалою</strong></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p>&gt;<strong>За шкалою університету&nbsp;(в балах)</strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p align="center"><span style="color: rgb(51, 153, 102);"><strong>А</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><span style="color: rgb(255, 102, 0);"><strong>Відмінно</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p align="center"><strong><span style="color: rgb(51, 102, 255);">90-100</span></strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p align="center"><span style="color: rgb(51, 153, 102);"><strong>BC</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><span style="color: rgb(255, 102, 0);"><strong>Добре</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p align="center"><strong><span style="color: rgb(51, 102, 255);">75-89</span></strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p align="center"><span style="color: rgb(51, 153, 102);"><strong>DE</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><span style="color: rgb(255, 102, 0);"><strong>Задовільно</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p align="center"><strong><span style="color: rgb(51, 102, 255);">60-74</span></strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p align="center"><span style="color: rgb(51, 153, 102);"><strong>FX</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><span style="color: rgb(255, 102, 0);"><strong>Незадовільно&nbsp;</strong></span><span style="color: rgb(255, 102, 0);"><strong>з можливістю повторного складання</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p align="center"><strong><span style="color: rgb(51, 102, 255);">35-59</span></strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td style="text-align: center;" valign="top" width="50">\r\n			<p align="center"><span style="color: rgb(51, 153, 102);"><strong>F</strong></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="225">\r\n			<p><span style="color: rgb(255, 102, 0);"><strong>Незадовільно&nbsp;</strong><span style="color: rgb(255, 102, 0);"><strong>з обов&rsquo;язковим повторним курсом</strong></span></span></p>\r\n			</td>\r\n			<td style="text-align: center;" valign="top" width="169">\r\n			<p align="center"><strong><span style="color: rgb(51, 102, 255);">1-34</span></strong></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p style="line-height: 20.3999996185303px; text-align: center;">&nbsp;</p>\r\n\r\n<h2 style="line-height: 20.3999996185303px; text-align: center;">Критерії оцінювання знань студентів</h2>\r\n\r\n<ul>\r\n	<li style="line-height: 20.3999996185303px;">Оцінка <strong>&ldquo;Відмінно&rdquo;</strong> ставиться за тверді знання даної теми. Студент правильно і повно відповідає на теоретичні питання, самостійно і правильно формулює постановку задачі, виконує формалізацію, будує логічні відношення та програму відповідно до змісту типових задач, впевнено працює з інструментальними засобами та володіє основами мови програмування для побудови задач .</li>\r\n	<li style="line-height: 20.3999996185303px;">Оцінка <strong>&ldquo;Добре&rdquo; </strong>ставиться за тверді знання даної теми. У відповідях можуть мати місце окремі неточності. Основні етапи розв&#39;язку типових задач курсу розуміються і виконуються студентом правильно.</li>\r\n	<li style="line-height: 20.3999996185303px;">Оцінка <strong>&ldquo;Задовільно&rdquo;</strong> ставиться за знання даної теми. Студент має загальні уяви про основні етапи та механізми розв&#39;язку типових задач. У відповідях присутні помилки, які студент у змозі виправити за допомогою викладача.</li>\r\n	<li style="line-height: 20.3999996185303px;">Оцінка <strong>&ldquo;Незадовільно&rdquo;</strong> ставиться за незнання основних розділів курсу та механізмів розв&lsquo;язку основних задач, невміння Їх використовувати для вирішення типових задач.</li>\r\n</ul>\r\n', 'neobhidno_znati', '2015-05-17 03:48:32', '2015-05-17 03:48:28'),
 (8, 1, 'Електронні видання', '<p><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Управління ІТ проектами:</span></p>\r\n\r\n<ol>\r\n	<li>Управління ІТ проектами [Електронний ресурс] : лабораторний практикум для студентів напряму підготовки 6.050101 &quot;Комп&#39;ютерні науки&quot; денної та заочної форм навч. / уклад. О. А. Хлобистова, М. В. Гладка. - К. : НУХТ, 2013. &ndash; 108 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n	<li>Управління ІТ проектами [Електронний ресурс] : методичні рекомендації до виконання курсової роботи для студентів напряму підготовки 6.050101 &laquo;Комп&quot;ютерні науки&raquo; денної та заочної форм навч. / уклад. М. В. Гладка, О. А. Хлобистова. &ndash; К. : НУХТ, 2014.&ndash; 91 с. &nbsp;<a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Інформаційно-обчислювальні комплекси та АСУ:</span></p>\r\n\r\n<ol>\r\n	<li>Інформаційно-обчислювальні комплекси та АСУ [Електронний ресурс] : методичні рекомендації до виконання лабораторних робіт для студентів напряму підготовки 6.050101 &quot;Комп&#39;ютерні науки&quot; усіх форм навч. / уклад. О. А. Хлобистова, М. В. Гладка, К. Є. Бобрівник. - К. : НУХТ, 2012. &ndash; 83 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n	<li>Інформаційно-обчислювальні комплекси та АСУ [Електронний ресурс] : навчальний посібник / уклад. О. А. Хлобистова, М. В. Гладка, К. Є. Бобрівник. - К. : НУХТ, 2013. &ndash; 178 с. &nbsp;<a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p style="line-height: 20.3999996185303px;">&nbsp;</p>\r\n\r\n<p style="line-height: 20.3999996185303px;"><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Технології комп&#39;ютерного проектування:</span></p>\r\n\r\n<ol>\r\n	<li style="line-height: 20.3999996185303px;">Технології комп&#39;ютерного проектування [Електронний ресурс] : лабораторний практикум для студентів напряму підготовки 6.050101 &quot;Комп&#39;ютерні науки&quot; денної та заочної форм навч / уклад. О. А. Хлобистова, М. В. Гладка. - К. : НУХТ, 2013. &ndash; 136 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138​">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p style="line-height: 20.3999996185303px;">&nbsp;</p>\r\n\r\n<p style="line-height: 20.3999996185303px;"><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Технології захисту інформації:</span></p>\r\n\r\n<ol>\r\n	<li style="line-height: 20.3999996185303px;">Хлобистова, О. А. Технології захисту інформації [Електронний ресурс] : навчальний посібник / уклад. О. А. Хлобистова, Ю. Г. Савченко, М. В. Гладка. &ndash; К. : НУХТ, 2014. &ndash; 84 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138​">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p style="line-height: 20.3999996185303px;">&nbsp;</p>\r\n\r\n<p style="line-height: 20.3999996185303px;"><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Основи патентознавства:</span></p>\r\n\r\n<ol>\r\n	<li style="line-height: 20.3999996185303px;">Основи патентознавства [Електронний ресурс] : методичні рекомендації до практичних занять для студентів спеціальностей 8.05010101, 7.05010101 &laquo;Інформаційні управляючі системи і технології&raquo;, 8.05010105 &laquo;Комп`ютерний еколого-економічний моніторинг&raquo;, денної та заочної форм навчання / уклад. О. А. Хлобистова, М. В. Гладка. &ndash; К. : НУХТ, 2014. &ndash; 30 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138​">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p style="line-height: 20.3999996185303px;">&nbsp;</p>\r\n\r\n<p style="line-height: 20.3999996185303px;"><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Технологія створення програмних продуктів:</span></p>\r\n\r\n<ol>\r\n	<li style="line-height: 20.3999996185303px;">Технологія створення програмних продуктів [Електронний ресурс] : лабораторний практикум для студентів напряму підготовки 6.050101 &laquo;Комп&#39;ютерні науки&raquo; денної та заочної форм навч. / уклад. : В. А. Литвинов, М. В. Гладка, О. А. Хлобистова. &ndash; К. : НУХТ, 2014. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138​">http://library.nuft.edu.ua/ebook/datathree.php?ID=138</a></li>\r\n</ol>\r\n\r\n<p style="line-height: 20.3999996185303px;">&nbsp;</p>\r\n\r\n<p style="line-height: 20.3999996185303px;"><span style="color: inherit; font-family: inherit; font-size: 22px; font-weight: 600; line-height: 24px;">Об&#39;єктно-орієнтоване програмування:</span></p>\r\n\r\n<ol>\r\n	<li style="line-height: 20.3999996185303px;">Об&#39;єктно-орієнтоване програмування [Електронний ресурс] : методичні рекомендації до виконання курсової роботи для студентів напряму підготовки 6.050101 &laquo;Комп&#39;ютерні науки&raquo; заочної форми навчання / уклад. М. В. Гладка, М. О. Кіктєв, Р. О. Бойко. &ndash; К. : НУХТ, 2014.&ndash; 58 с. <a href="http://library.nuft.edu.ua/ebook/datathree.php?ID=138​">http://library.nuft.edu.ua/ebook/datathree.php?ID=138​</a></li>\r\n</ol>\r\n', 'elektronni_vidannya', '2015-05-17 03:49:34', '2015-05-17 03:49:28'),
-(9, 1, 'Вітання завідуючого кафедри', '<h2 style="text-align: center;">Дорогі друзі!</h2>\r\n\r\n<p>​<img alt="" src="/img/zavkaf.png" style="width: 200px; height: 280px; float: left;" />Радий вітати Вас на сайті кафедри &quot;Інформаційних систем&quot; і сподіваюся, що тут Ви знайдете для себе багато різноманітної інформації, що буде корисна і викладачам, і співробітникам та студентам, і абітурієнтам і їхнім батькам та випускникам нашого університету!</p>\r\n\r\n<p>Зараз Ви опинилися &nbsp;перед вибором, який можливо визначить ваше подальше життя - ким стати, яку спеціальність вибрати? Перед вами безліч доріг, і я щиро бажаю, щоб, вибравши свою, ви йшли по ній до кінця, не знаючи розчарування і утоми! Студентське життя повне турбот і хвилювань, але немає часу прекрасніше, чим студентська пора.</p>\r\n\r\n<p>Перед вами відкриваються великі перспективи. Ви будете навчатися за спеціально розробленими програмами, вести наукові дослідження під керівництвом досвідчених викладачів, брати участь у цікавих молодіжних проектах і впроваджувати їх у реальне життя.</p>\r\n\r\n<p>Завдання кафедри - підготовка кваліфікованих фахівців в галузі інформаційних управляючих систем та технологій, які користуються попитом на ринку праці, професійно компетентних, конкурентоздатних та успішних у житті; створення механізмів, здатних підняти якість освіти; створення якісно нових, адекватних сучасним вимогам умов навчання.</p>\r\n\r\n<p>Упевнений, що попереду у вас багато сміливих відкриттів й особистих перемог. Бажаю, щоб кожен новий навчальний рік наближав вас до головної мети - знайти своє місце в житті.</p>\r\n', 'main', '2015-05-18 20:16:11', '2015-05-18 05:19:55'),
-(10, 2, 'Тестова сторінка користувача', '<p>Nulla molestie tortor sed efficitur tempus. Nulla maximus risus egestas bibendum placerat. Suspendisse vel leo ipsum. In interdum suscipit posuere. Quisque ipsum arcu, accumsan non ultricies quis, ultrices non nulla. Nam condimentum rutrum aliquet. Nulla ut erat ut neque lacinia blandit vel vel libero. Suspendisse et semper erat. Aliquam venenatis gravida fermentum.</p>\r\n', 'testova_storinka_koristuvacha', '2015-05-18 21:06:34', '2015-05-18 21:06:34');
+(9, 1, 'Вітання завідуючого кафедри', '<h2 style="text-align: center;">Дорогі друзі!</h2>\r\n\r\n<p>​<img alt="" src="/img/zavkaf.png" style="width: 200px; height: 280px; float: left;" />Радий вітати Вас на сайті кафедри &quot;Інформаційних систем&quot; і сподіваюся, що тут Ви знайдете для себе багато різноманітної інформації, що буде корисна і викладачам, і співробітникам та студентам, і абітурієнтам і їхнім батькам та випускникам нашого університету!</p>\r\n\r\n<p>Зараз Ви опинилися &nbsp;перед вибором, який можливо визначить ваше подальше життя - ким стати, яку спеціальність вибрати? Перед вами безліч доріг, і я щиро бажаю, щоб, вибравши свою, ви йшли по ній до кінця, не знаючи розчарування і утоми! Студентське життя повне турбот і хвилювань, але немає часу прекрасніше, чим студентська пора.</p>\r\n\r\n<p>Перед вами відкриваються великі перспективи. Ви будете навчатися за спеціально розробленими програмами, вести наукові дослідження під керівництвом досвідчених викладачів, брати участь у цікавих молодіжних проектах і впроваджувати їх у реальне життя.</p>\r\n\r\n<p>Завдання кафедри - підготовка кваліфікованих фахівців в галузі інформаційних управляючих систем та технологій, які користуються попитом на ринку праці, професійно компетентних, конкурентоздатних та успішних у житті; створення механізмів, здатних підняти якість освіти; створення якісно нових, адекватних сучасним вимогам умов навчання.</p>\r\n\r\n<p>Упевнений, що попереду у вас багато сміливих відкриттів й особистих перемог. Бажаю, щоб кожен новий навчальний рік наближав вас до головної мети - знайти своє місце в житті.</p>\r\n', 'main', '2015-05-18 20:16:11', '2015-05-18 05:19:55');
 
 -- --------------------------------------------------------
 
@@ -216,14 +199,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп данных таблицы `reviews`
---
-
-INSERT INTO `reviews` (`id`, `name`, `email`, `text`, `published`, `user_id`, `created`, `modified`) VALUES
-(1, 'Шуляр Владислав Ігорович', 'shuler@ukr.net', '<p>Чудовий сайт&nbsp;з красивим дизайном та інформаційним наповненням!</p>\r\n', 1, 1, '2015-05-18 20:00:37', '2015-05-18 20:02:31');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -239,16 +215,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(15) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `hash_id`, `login`, `password`, `role`, `created`) VALUES
-(1, '6e7b0dfcba5470143d644cdcb7b1e89c', 'admin', '$2a$10$/NhL8dUQ/S4UC6Uf66KGWuiddn0rNIyxCgOXHyW0VLHVpxTXnDwa6', 'admin', '2015-05-17 01:13:39'),
-(2, '4067e93542da090a7390f81f0ece956c', 'test_user1', '$2a$10$.rgXv.KD6x7Gd1O5TnF8VOtmwyFYY5U33bkNzRow2SuU9FGdmwf9i', 'user', '2015-05-18 20:18:35'),
-(3, '1fa25cac27e580a2d06b8d2ea608ff29', 'test_user2', '$2a$10$JMdJUNYXaytkzI4WEA21o.mEeF6Xcu2BVqCWHC3lIeCeoeTucii.a', 'user', '2015-05-18 20:26:11');
+(1, '6e7b0dfcba5470143d644cdcb7b1e89c', 'admin', '$2a$10$/NhL8dUQ/S4UC6Uf66KGWuiddn0rNIyxCgOXHyW0VLHVpxTXnDwa6', 'admin', '2015-05-17 01:13:39');
 
 -- --------------------------------------------------------
 
@@ -268,16 +242,14 @@ CREATE TABLE IF NOT EXISTS `users_information` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `users_information`
 --
 
 INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `post`, `contact`, `content`, `photo`, `modified`) VALUES
-(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', 'Адміністратор сайту кафедри інформаційних систем', '38(000)000-00-00', '', 'img/users/4227b5a99e0c52d1830ada2144ddae5d.jpeg', '2015-05-18 02:53:15'),
-(2, 2, 'test1@ukr.net', 'Тестовий Користувач 1', 'Тестувальник1', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae erat nec nulla luctus ullamcorper in at sapien. Morbi sit amet metus augue. Nunc ullamcorper mollis fringilla. Etiam nec mi quis ligula mattis venenatis ac accumsan purus. Etiam consectetur metus a neque vehicula interdum. Aliquam eu mauris quis magna commodo porta. Mauris a blandit nisl. Pellentesque lorem est, ultrices in odio nec, pharetra imperdiet nibh. Nam et porta erat. Suspendisse congue tortor et ex aliquam, a tempor augue viverra. Cras ac leo risus. Vestibulum at turpis sed elit rhoncus blandit. Phasellus non neque non sapien finibus ullamcorper eu vitae dui.</p>\r\n\r\n<p><a href="/pages/view/testova_storinka_koristuvacha">Посилання на &quot;свою&quot; сторінку</a></p>\r\n\r\n<p>Phasellus egestas, enim id dignissim fermentum, dui enim egestas felis, ut iaculis eros nunc et tortor. Vestibulum in justo pretium elit mollis eleifend sit amet vitae nisi. Nullam libero magna, condimentum vitae purus ut, facilisis suscipit nisl. Aenean elementum tellus vitae rhoncus hendrerit. Cras sapien est, luctus ut tortor et, elementum eleifend justo. Aliquam volutpat magna sed justo sodales, sed dignissim magna sodales. Phasellus nibh enim, mollis eu eros ut, auctor tristique justo. Mauris non ornare libero, eu tempor risus. Vivamus enim justo, cursus in nibh in, ultrices mattis augue. Curabitur porta interdum lectus eget feugiat. Nunc at ante laoreet dolor luctus laoreet. Sed id interdum urna, non pretium sapien. Donec scelerisque lacinia mi non tempor. Phasellus massa mauris, hendrerit a urna et, auctor vulputate diam.</p>\r\n\r\n<p>Nulla molestie tortor sed efficitur tempus. Nulla maximus risus egestas bibendum placerat. Suspendisse vel leo ipsum. In interdum suscipit posuere. Quisque ipsum arcu, accumsan non ultricies quis, ultrices non nulla. Nam condimentum rutrum aliquet. Nulla ut erat ut neque lacinia blandit vel vel libero. Suspendisse et semper erat. Aliquam venenatis gravida fermentum.</p>\r\n\r\n<p>Nulla elementum ligula metus, a vestibulum tellus suscipit et. Quisque tempor libero nec ligula laoreet, ut porta mauris mollis. Pellentesque interdum scelerisque metus ac facilisis. Sed condimentum ullamcorper lacus eu ultrices. Morbi aliquet porttitor fringilla. Mauris vel elit quis dolor condimentum feugiat ut quis massa. Donec a neque varius, congue mauris dignissim, euismod lacus. Donec sit amet neque lectus. Vivamus ut ornare magna.</p>\r\n\r\n<p>Donec non massa est. Fusce venenatis quis ante et accumsan. Donec aliquet porta risus, vel pulvinar eros elementum a. Sed viverra justo et ullamcorper suscipit. Nam metus sem, auctor et nisi a, sagittis maximus nulla. Mauris ultricies lacinia elementum. Vivamus vitae pellentesque lectus, ut volutpat nisl. Aliquam sed ante sit amet arcu commodo fermentum. Phasellus aliquam eros non elit vulputate sodales. Nulla facilisis, tellus at placerat tristique, mauris arcu cursus lectus, at volutpat justo arcu non ex. Ut facilisis augue a est condimentum eleifend. Sed egestas nulla in elit ullamcorper pulvinar.</p>\r\n', 'img/users/0a64a933673bca8716eb05334819612c.jpeg', '2015-05-18 21:10:49'),
-(3, 3, 'test1@ukr.net', 'Тестовий Користувач 2', 'Тестувальник2', '', '', NULL, '2015-05-18 20:26:11');
+(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', 'Адміністратор сайту кафедри інформаційних систем', '', '', 'img/users/4227b5a99e0c52d1830ada2144ddae5d.jpeg', '2015-05-23 03:06:15');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -287,7 +259,7 @@ INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `post`, `cont
 -- Ограничения внешнего ключа таблицы `alerts`
 --
 ALTER TABLE `alerts`
-  ADD CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `files`
@@ -306,13 +278,13 @@ ALTER TABLE `menu_items`
 -- Ограничения внешнего ключа таблицы `news`
 --
 ALTER TABLE `news`
-  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `pages`
 --
 ALTER TABLE `pages`
-  ADD CONSTRAINT `pages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `pages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `reviews`

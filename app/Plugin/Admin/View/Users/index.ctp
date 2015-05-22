@@ -64,7 +64,7 @@
                             <tr>
                                 <td>
                                     ".$item['User']['login']."
-                                    <p class='text-muted small'>/users/view/".$item['User']['id']."</p>
+                                    <p class='text-muted small'>/users/view/".$item['User']['hash_id']."</p>
                                 </td>
                                 <td>".$role."</td>
                                 <td>".$item['User']['created']."</td>
