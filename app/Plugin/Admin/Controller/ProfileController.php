@@ -75,9 +75,14 @@ class ProfileController extends AdminAppController {
 					$options_crop['base_dir'] = $base_dir;
 					
 					$res_crop = $this->MyMadImage->cropImage($user_info['UserInfo']['photo'], $options_crop);
-					$res = $this->MyMadImage->makeThumb($res_crop, array('dw' => 220));
 					
-					if(!empty($res)) {
+					if(!empty($res_crop)) {
+						$res = $this->MyMadImage->makeThumb($res_crop, array('dw' => 220, 'base_dir' => $base_dir));
+					} else {
+						$this->Session->setFlash('Помилка. Мініатюра не створена. Область для створення мініатюри не повинна торкатися краю зображення', 'flash', array('class' => 'alert-danger'));
+					}
+					
+					if(!empty($res_crop) && !empty($res)) {
 						$this->UserInfo->id = $user_info['UserInfo']['id'];
 						$this->UserInfo->saveField('photo', str_replace(DS, '/', $res));
 

@@ -216,8 +216,8 @@ class MyMadImageComponent extends Component {
 		if($options['x'] >= 0 && $options['y'] >= 0 && $options['w'] > 0 && $options['h'] > 0) {
 			$dst = ImageCreateTrueColor($options['w'], $options['h']);
 			imagecopyresampled($dst, $img, 0, 0, $options['x'], $options['y'], $options['w'], $options['h'], $options['w'], $options['h']);
-			$file_url = $options['base_dir'].'/'.md5(date('YmdHis').microtime()).".png";
-			imagepng($dst, $file_url, 9);
+			$file_url = $options['base_dir'].'/'.md5(date('YmdHis').microtime()).".jpeg";
+			imagejpeg($dst, $file_url, 80);
 			
 			unlink($src);
 			
@@ -249,9 +249,7 @@ class MyMadImageComponent extends Component {
 		$dst = ImageCreateTrueColor($width, $height);
 		imagecopyresampled($dst, $img, 0, 0, 0, 0, $width, $height, $options['sw'], $options['sh']);
 		
-		$path_parts = pathinfo($src);
-		
-		$file_url = $path_parts['dirname'].DS.$path_parts['filename'].'.jpeg';		
+		$file_url = $options['base_dir'].'/'.md5(date('YmdHis').microtime()).".jpeg";
 		imagejpeg($dst, $file_url, 80);
 		
 		unlink($src);
