@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `users_information` (
 --
 
 INSERT INTO `users_information` (`id`, `user_id`, `email`, `name`, `post`, `contact`, `content`, `photo`, `modified`) VALUES
-(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', 'Адміністратор сайту кафедри інформаційних систем', '', '', 'img/users/4227b5a99e0c52d1830ada2144ddae5d.jpeg', '2015-05-23 03:06:15');
+(1, 1, 'admin.is@nuft.edu.ua', 'Адміністратор ІС', 'Адміністратор сайту кафедри інформаційних систем', '', '', 'img/users/d922b9a3dcb1db560a3bdc0792f0c78f.jpeg', '2015-05-23 03:06:15');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
