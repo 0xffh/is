@@ -1,5 +1,6 @@
 <?php
 App::uses('Controller', 'Controller');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class AppController extends Controller {
     public $components = array(
         'Auth' => array(
