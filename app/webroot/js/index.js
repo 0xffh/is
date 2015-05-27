@@ -26,11 +26,6 @@
         $('[data-toggle="tooltip"]').tooltip();
         
         $up_button.click(scrollUp);
-        
-        $('.header ul.nav li.dropdown').hover(
-            function(){ $(this).addClass('open') },
-            function(){ $(this).removeClass('open') }
-        );
 })(jQuery);
 
 function scrollUp() {

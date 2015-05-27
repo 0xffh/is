@@ -27,7 +27,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row header">
         <div class="col-md-12 main-menu">
             <ul class="nav nav-tabs nav-justified">
                 <?php
