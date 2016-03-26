@@ -71,6 +71,17 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
+		'host' => '',
+		'login' => '',
+		'password' => '',
+		'database' => '',
+		'prefix' => '',
+		'encoding' => 'utf8',
+	);
+	
+	public $local = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '',
@@ -78,15 +89,27 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
-
-	public $test = array(
+	
+	public $production = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'host' => '',
+		'login' => '',
+		'password' => '',
+		'database' => '',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
+	
+    function __construct() {
+        switch($_SERVER['SERVER_NAME']) {
+            case '' :
+            case '' :
+                $this->default = $this->production;
+            break;
+            default :
+                $this->default = $this->local;
+            break;
+        }
+    }
 }
