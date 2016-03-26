@@ -1,29 +1,25 @@
-<nav class="navbar navbar-default top-menu" role="navigation">
+<nav class="navbar navbar-default top-menu hidden-xs" role="navigation">
     <div class="container-fluid">					
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-            <ul class="nav navbar-nav main">
-                <li><a target="_blank" href="http://acs.nuft.edu.ua/">Сайт Факультету АКС</a></li>
-                <li><a target="_blank" href="http://nuft.edu.ua/">Офіційний сайт НУХТ</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">					
-                <li><a target="_blank" href="/users/login">Адміністративна панель</a></li>
-            </ul>
-        </div>
+		<ul class="nav navbar-nav main">
+			<li><a target="_blank" href="http://acs.nuft.edu.ua/">Сайт Факультету АКС</a></li>
+			<li><a target="_blank" href="http://nuft.edu.ua/">Офіційний сайт НУХТ</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">					
+			<li><a target="_blank" href="/users/login">Адміністративна панель</a></li>
+		</ul>
     </div>
 </nav>
 <div class="container-fluid text-center logo">
     <div class="row">
-        <div class="col-md-12">
-            <img src="/img/header.png">
-        </div>			
+        <div class="col-md-1 col-sm-2 hidden-xs">
+            <img src="/img/logo/acs.png">
+        </div>
+		<div class="col-md-10 col-sm-8 col-xs-12">
+			<h2>Кафедра інформаційних систем</h2>
+		</div>
+		<div class="col-md-1 col-sm-2 hidden-xs">
+			<img src="/img/logo/nuft.gif">
+		</div>
     </div>
 </div>
 <div class="container-fluid">

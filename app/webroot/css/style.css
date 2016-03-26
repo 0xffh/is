@@ -2,7 +2,7 @@
 
 body {font-family: 'Roboto', sans-serif !important;}
 
-img {max-width:100%;}
+img {max-width: 100%;}
 * {outline:none !important}
 
 .margin-top10 {margin-top: 10px;}
@@ -15,10 +15,9 @@ img {max-width:100%;}
 .top-menu {margin-bottom: 0; border-color: #fff;}
 
 .logo {padding: 10px 15px;}
-.logo img {width: 100%; max-width: 850px;}
+.logo h2 {color: #2f5677; font-weight: bold; font-size: 36px; line-height: 42px; text-transform: uppercase; text-shadow: 0 1px #d2d2d2, 0 2px #c7c7c7;}
 
 .page p {text-align: justify;}
-.page img {margin-right: 20px; margin-bottom: 20px;}
 .page table td {padding-left: 5px; padding-right: 5px;}
 
 .users .thumbnail {height: 395px; overflow: hidden;}
@@ -32,6 +31,11 @@ img {max-width:100%;}
 #up-button:hover {bottom:20px; background:#fff; color:#222}
 
 @media screen and (max-width: 1100px){
+	.main-menu .nav > li > a {font-size: 12px; padding-left: 5px; padding-right: 5px;}
+	#up-button {padding: 5px; bottom: 10px; left: 5px;}
+}
+
+@media screen and (max-width: 840px){
 	.main-menu .nav li {display: block; width: 100%}
 	.main-menu .nav > li > a {margin-bottom:5px; border:none; border-bottom:1px solid #eee; border-radius:0}
 	.main-menu .nav > li > ul {width:100%}

@@ -1,6 +1,7 @@
 <?php
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class UsersController extends AppController {
 	
 	function beforeFilter() {
@@ -56,7 +57,7 @@ class UsersController extends AppController {
         if($this->request->is('post')) {
             if($this->User->saveAll($this->request->data, array('validate' => 'only'))) {
                 $this->request->data['User']['hash_id'] = md5(date('YmdHis').rand(1, 1000).Configure::read('Security.salt'));
-				$this->request->data['User']['password'] = Security::hash($this->request->data['User']['password'], 'blowfish');
+				$this->request->data['User']['password'] = Security::hash($this->request->data['User']['password'], 'Blowfish');
                 $this->request->data['User']['role'] = 'guest';
 				$this->request->data['UserInfo']['user_id'] = $this->User->id;
 				

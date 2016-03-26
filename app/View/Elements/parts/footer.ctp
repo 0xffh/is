@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row copy">
-        <div class="col-md-9 col-xs-9">© 2015 Кафедра Інформаційних систем</div>
-        <div class="col-md-3 col-xs-3 text-right"><a target="_blank" href="mailto:vlad.shylyar@gmail.com">РОЗРОБНИК</a></div>
+        <div class="col-md-9 col-xs-9">© 2016 Кафедра Інформаційних систем</div>
+        <div class="col-md-3 col-xs-3 text-right"><a target="_blank" href="mailto:vlad.shylyar@gmail.com">Developed by</a></div>
     </div>
 </div>
