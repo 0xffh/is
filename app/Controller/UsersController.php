@@ -115,7 +115,7 @@ class UsersController extends AppController {
 				)
 			),
 			'conditions' => array(
-				'User.hash_id' => $slug
+				'User.login' => $slug
 			)
 		));
 		if(empty($user)) throw new NotFoundException();
@@ -137,7 +137,7 @@ class UsersController extends AppController {
 				)
 			),
 			'conditions' => array(
-				'User.hash_id' => $slug
+				'User.login' => $slug
 			)
 		));
 		if(empty($user)) throw new NotFoundException();

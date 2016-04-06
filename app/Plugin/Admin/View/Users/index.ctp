@@ -50,7 +50,7 @@
                                     <span class="glyphicon glyphicon-cog"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right" role="menu">
-                                    <li>'.$this->Html->link('Перегляд', '/users/view/'.$item['User']['hash_id'], array('target' => '_blank')).'</li>
+                                    <li>'.$this->Html->link('Перегляд', '/users/view/'.$item['User']['login'], array('target' => '_blank')).'</li>
                                     <li role="presentation" class="divider"></li>
                                     <li>'.$this->Html->link('Новий пароль', '/admin/users/password/'.$item['User']['id']).'</li>
                                     <li role="presentation" class="divider"></li>
@@ -64,7 +64,7 @@
                             <tr>
                                 <td>
                                     ".$item['User']['login']."
-                                    <p class='text-muted small'>/users/view/".$item['User']['hash_id']."</p>
+                                    <p class='text-muted small'>/users/view/".$item['User']['login']."</p>
                                 </td>
                                 <td>".$role."</td>
                                 <td>".$item['User']['created']."</td>

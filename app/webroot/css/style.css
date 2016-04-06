@@ -15,14 +15,14 @@ img {max-width: 100%;}
 .top-menu {margin-bottom: 0; border-color: #fff;}
 
 .logo {padding: 10px 15px;}
-.logo h2 {color: #2f5677; font-weight: bold; font-size: 36px; line-height: 42px; text-transform: uppercase; text-shadow: 0 1px #d2d2d2, 0 2px #c7c7c7;}
+.logo h2 {color: #2f5677; font-weight: bold; font-size: 36px; line-height: 42px; text-transform: uppercase; text-shadow: 0 1px rgba(210, 210, 210, 0.88), 0 2px rgba(199, 199, 199, 0.76); letter-spacing: 5px;}
 
 .page p {text-align: justify;}
 .page table td {padding-left: 5px; padding-right: 5px;}
 
 .users .thumbnail {height: 395px; overflow: hidden;}
 
-.footer {color: #222; background: #81acdc; box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.1); margin-top: 30px;}
+.footer {color: #222; background: #81acdc; box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.1); margin-top: 30px;}
 .footer a {color: #fff;}
 .footer .copy {border-top: 1px solid #546f85; font-size: 12px; padding: 10px 0; color: #222;}
 
